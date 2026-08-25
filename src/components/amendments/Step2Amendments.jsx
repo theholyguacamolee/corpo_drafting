@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import TableEditor from "./shared/TableEditor";
-import { NEW_INCORP_COLS, NEW_DIR_COLS, NEW_SUBS_COLS, SIGNATORY_COLS } from "../hooks/useAppState";
-import { PURPOSE_DB } from "../utils/purposeDb";
-import { generateDocumentHTML } from "../utils/docGenerator";
+import TableEditor from "@/components/TableEditor";
+import { NEW_INCORP_COLS, NEW_DIR_COLS, NEW_SUBS_COLS, SIGNATORY_COLS } from "@/templates/amendments/hooks/useAppState";
+import { PURPOSE_DB } from "@/templates/amendments/utils/purposeDb";
+import { generateDocumentHTML } from "@/templates/amendments/utils/docGenerator";
 
 const ARTICLES = [
   { id: '1',  label: 'Art. I — Name' },
@@ -68,7 +68,7 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
 
   return (
     <div>
-      <div style={{display:'flex', alignItems:'center', gap:10}}>
+      <div style={{display:'flex', alignItems:'center', gap:10, marginBottom: 16}}>
         <h2>Step 2 — Select &amp; Configure Amendments</h2>
       </div>
 
@@ -103,8 +103,8 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
       {/* Art I */}
       {isArt('1') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article I — Corporate Name</h3>
-          <p style={{fontSize:'.8rem',color:'#8b949e',margin:'0 0 8px 0'}}>CURRENT REGISTERED NAME: <b>{s.baseName || '—'}</b></p>
+          <h3 style={{color:'var(--navy)'}}>Article I — Corporate Name</h3>
+          <p style={{fontSize:'.82rem',color:'var(--text-secondary)',margin:'0 0 10px 0'}}>CURRENT REGISTERED NAME: <b>{s.baseName || '—'}</b></p>
           
           <div className="input-grid">
             <div className="full">
@@ -122,7 +122,7 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
             <div className="full">
               <label className="field-label">FORMER TRADE NAME(S) (ASSOCIATED WITH THE FORMER NAME ABOVE)</label>
               {s.newFormerlyTradeNames.length === 0
-                ? <p style={{fontSize:'.78rem',color:'#555',margin:'4px 0'}}>No former trade names added.</p>
+                ? <p style={{fontSize:'.8rem',color:'var(--text-muted)',margin:'6px 0'}}>No former trade names added.</p>
                 : s.newFormerlyTradeNames.map((name, i) => (
                   <div key={i} className="trade-name-tag">
                     <span>{name}</span>
@@ -140,20 +140,20 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
             </div>
           </div>
           
-          <div style={{borderTop:'1px solid var(--border)',paddingTop:14,marginTop:12}}>
+          <div style={{borderTop:'1px solid var(--border)',paddingTop:16,marginTop:16}}>
             <label className="field-label" style={{marginTop:0}}>Also Amend Trade Name(s)?</label>
-            <p style={{fontSize:'.78rem',color:'#8b949e',margin:'4px 0 10px 0'}}>
+            <p style={{fontSize:'.8rem',color:'var(--text-muted)',margin:'4px 0 12px 0'}}>
               Toggle whether to amend trade names as part of this Article I amendment.
             </p>
-            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.85rem',cursor:'pointer',marginBottom:12}}>
+            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.88rem',cursor:'pointer',marginBottom:14}}>
               <input type="checkbox" checked={s.amendTradeNames} onChange={e => handleAmendTradeToggle(e.target.checked)} style={{width:'auto',margin:0}} />
-              <span style={{color:'var(--gold)',fontWeight:700}}>Yes — amend trade names as part of this Article I amendment</span>
+              <span style={{color:'var(--navy)',fontWeight:700}}>Yes — amend trade names as part of this Article I amendment</span>
             </label>
             {s.amendTradeNames && (
               <div>
-                <p style={{fontSize:'.78rem',color:'#8b949e',margin:'0 0 8px 0'}}>Edit the list below. Remove all to have no trade names.</p>
+                <p style={{fontSize:'.8rem',color:'var(--text-secondary)',margin:'0 0 10px 0'}}>Edit the list below. Remove all to have no trade names.</p>
                 {s.newTradeNames.length === 0
-                  ? <p style={{fontSize:'.78rem',color:'#555',margin:'4px 0'}}>No trade names — all will be removed if saved.</p>
+                  ? <p style={{fontSize:'.8rem',color:'var(--text-muted)',margin:'6px 0'}}>No trade names — all will be removed if saved.</p>
                   : s.newTradeNames.map((name, i) => (
                     <div key={i} className="trade-name-tag">
                       <span>{name}</span>
@@ -177,15 +177,15 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
       {/* Art II */}
       {isArt('2') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article II — Change of Purpose</h3>
+          <h3 style={{color:'var(--navy)'}}>Article II — Change of Purpose</h3>
           
-          <div style={{marginBottom: 16}}>
-            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.85rem',cursor:'pointer',marginBottom:12}}>
+          <div style={{marginBottom: 18}}>
+            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.88rem',cursor:'pointer',marginBottom:14}}>
               <input type="checkbox" checked={s.amendPrimary} onChange={e => s.setAmendPrimary(e.target.checked)} style={{width:'auto',margin:0}} />
-              <span style={{color:'var(--gold)',fontWeight:700}}>Amend Primary Purpose?</span>
+              <span style={{color:'var(--navy)',fontWeight:700}}>Amend Primary Purpose?</span>
             </label>
             {s.amendPrimary && (
-              <div style={{paddingLeft: 24, borderLeft: '2px solid var(--border)', marginBottom: 20}}>
+              <div style={{paddingLeft: 20, borderLeft: '2px solid var(--gold)', marginBottom: 20}}>
                 <div className="input-grid" style={{marginBottom: 16}}>
                   <div className="full">
                     <label className="field-label">NEW PRIMARY PURPOSE — PRIOR AMENDMENT DATE (IF PREVIOUSLY AMENDED)</label>
@@ -204,7 +204,7 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
                   ))}
                 </div>
                 {s.selectedPrimary && (
-                  <div className="sel-purpose-tag" style={{marginTop:10}}>
+                  <div className="sel-purpose-tag" style={{marginTop:12}}>
                     <span><b>{s.selectedPrimary.name}:</b> {s.selectedPrimary.text}</span>
                     <button onClick={() => s.setSelectedPrimary(null)}>✕</button>
                   </div>
@@ -214,12 +214,12 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
               </div>
             )}
 
-            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.85rem',cursor:'pointer',marginBottom:12}}>
+            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.88rem',cursor:'pointer',marginBottom:14}}>
               <input type="checkbox" checked={s.amendSecondary} onChange={e => s.setAmendSecondary(e.target.checked)} style={{width:'auto',margin:0}} />
-              <span style={{color:'var(--gold)',fontWeight:700}}>Amend Secondary Purpose(s)?</span>
+              <span style={{color:'var(--navy)',fontWeight:700}}>Amend Secondary Purpose(s)?</span>
             </label>
             {s.amendSecondary && (
-              <div style={{paddingLeft: 24, borderLeft: '2px solid var(--border)'}}>
+              <div style={{paddingLeft: 20, borderLeft: '2px solid var(--gold)'}}>
                 <div className="input-grid" style={{marginBottom: 16}}>
                   <div className="full">
                     <label className="field-label">NEW SECONDARY PURPOSE(S) — PRIOR AMENDMENT DATE (IF PREVIOUSLY AMENDED)</label>
@@ -254,8 +254,8 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
       {/* Art III */}
       {isArt('3') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article III — Principal Office</h3>
-          <p style={{fontSize:'.78rem',color:'#8b949e',margin:'0 0 8px 0'}}>Only fill No./Street if the document explicitly states a street address with a number or street type keyword. Leave blank if the document only lists barangay/city.</p>
+          <h3 style={{color:'var(--navy)'}}>Article III — Principal Office</h3>
+          <p style={{fontSize:'.82rem',color:'var(--text-secondary)',margin:'0 0 10px 0'}}>Only fill No./Street if the document explicitly states a street address with a number or street type keyword. Leave blank if the document only lists barangay/city.</p>
           <div className="input-grid">
             <div className="full">
               <label className="field-label">NO. / STREET (LEAVE BLANK IF NOT EXPLICITLY IN DOCUMENT)</label>
@@ -276,7 +276,7 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
       {/* Art IV */}
       {isArt('4') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article IV — Corporate Term</h3>
+          <h3 style={{color:'var(--navy)'}}>Article IV — Corporate Term</h3>
           <div className="input-grid">
             <div>
               <label className="field-label">TERM (YEARS — ENTER 0 FOR PERPETUAL)</label>
@@ -293,7 +293,7 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
       {/* Art V */}
       {isArt('5') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article V — Change of Incorporators</h3>
+          <h3 style={{color:'var(--navy)'}}>Article V — Change of Incorporators</h3>
           <TableEditor cols={NEW_INCORP_COLS} rows={s.newIncorp}
             onAdd={() => s.addRow(s.setNewIncorp, NEW_INCORP_COLS)}
             onRemove={i => s.removeRow(s.setNewIncorp, i)}
@@ -305,14 +305,14 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
       {/* Art VI */}
       {isArt('6') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article VI — Change in Board of Directors</h3>
+          <h3 style={{color:'var(--navy)'}}>Article VI — Change in Board of Directors</h3>
           <div className="input-grid">
             <div>
               <label className="field-label">New Number of Directors</label>
               <input type="number" value={s.newDirCount} onChange={e => s.setNewDirCount(e.target.value)} placeholder="e.g. 7" min={1} max={15} />
             </div>
           </div>
-          <label className="field-label" style={{marginTop:14}}>New Director Roster</label>
+          <label className="field-label" style={{marginTop:16}}>New Director Roster</label>
           <TableEditor cols={NEW_DIR_COLS} rows={s.newDirs}
             onAdd={() => s.addRow(s.setNewDirs, NEW_DIR_COLS)}
             onRemove={i => s.removeRow(s.setNewDirs, i)}
@@ -324,7 +324,7 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
       {/* Art VII */}
       {isArt('7') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article VII — Change of Authorized Capital Stock</h3>
+          <h3 style={{color:'var(--navy)'}}>Article VII — Change of Authorized Capital Stock</h3>
           <div className="input-grid">
             <div className="full">
               <label className="field-label">New ACS (in words, ALL CAPS)</label>
@@ -340,7 +340,7 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
       {/* Art VIII/IX */}
       {isArt('89') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Articles VIII &amp; IX — Subscription &amp; Payment</h3>
+          <h3 style={{color:'var(--navy)'}}>Articles VIII &amp; IX — Subscription &amp; Payment</h3>
           <TableEditor cols={NEW_SUBS_COLS} rows={s.newSubs}
             onAdd={() => s.addRow(s.setNewSubs, NEW_SUBS_COLS)}
             onRemove={i => s.removeRow(s.setNewSubs, i)}
@@ -352,7 +352,7 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
       {/* Art X */}
       {isArt('10') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article X — Change of Treasurer-in-Trust</h3>
+          <h3 style={{color:'var(--navy)'}}>Article X — Change of Treasurer-in-Trust</h3>
           <div className="input-grid">
             <div>
               <label className="field-label">New Treasurer Name</label>
@@ -369,24 +369,24 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
       {/* Art XI */}
       {isArt('11') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article XI — Amendment Clause</h3>
-          <div style={{display:'flex',flexDirection:'column',gap:8,marginTop:8}}>
-            <label style={{display:'flex',alignItems:'flex-start',gap:10,fontSize:'.83rem',cursor:'pointer'}}>
+          <h3 style={{color:'var(--navy)'}}>Article XI — Amendment Clause</h3>
+          <div style={{display:'flex',flexDirection:'column',gap:8,marginTop:10}}>
+            <label style={{display:'flex',alignItems:'flex-start',gap:10,fontSize:'.85rem',cursor:'pointer'}}>
               <input type="radio" name="comp-clause" value="standard" checked={s.compClause==='standard'} onChange={() => s.setCompClause('standard')} style={{width:'auto',marginTop:3}} />
               <span><b>Standard:</b> That the corporation manifests its willingness to change its corporate name in the event another person, firm, or entity has acquired a prior right to use the said firm name or one deceptively or confusingly similar to it.</span>
             </label>
-            <label style={{display:'flex',alignItems:'flex-start',gap:10,fontSize:'.83rem',cursor:'pointer'}}>
+            <label style={{display:'flex',alignItems:'flex-start',gap:10,fontSize:'.85rem',cursor:'pointer'}}>
               <input type="radio" name="comp-clause" value="custom" checked={s.compClause==='custom'} onChange={() => s.setCompClause('custom')} style={{width:'auto',marginTop:3}} />
               <span><b>Custom provision:</b></span>
             </label>
           </div>
-          <textarea value={s.customCompClause} onChange={e => s.setCustomCompClause(e.target.value)} placeholder="Enter custom provision text here..." rows={3} style={{marginTop:8}} />
+          <textarea value={s.customCompClause} onChange={e => s.setCustomCompClause(e.target.value)} placeholder="Enter custom provision text here..." rows={3} style={{marginTop:10}} />
         </div>
       )}
 
       <div className="form-block card">
-        <h3 style={{color:'var(--gold)'}}>Document Signatories</h3>
-        <p style={{fontSize:'.78rem',color:'#8b949e',margin:'0 0 12px 0'}}>Review and edit the names, roles, and TINs of the individuals who will sign the Amended Articles of Incorporation and Treasurer's Affidavit.</p>
+        <h3 style={{color:'var(--navy)'}}>Document Signatories</h3>
+        <p style={{fontSize:'.82rem',color:'var(--text-secondary)',margin:'0 0 14px 0'}}>Review and edit the names, roles, and TINs of the individuals who will sign the Amended Articles of Incorporation and Treasurer's Affidavit.</p>
         <TableEditor cols={SIGNATORY_COLS} rows={s.newSignatories}
           onAdd={() => s.addRow(s.setNewSignatories, SIGNATORY_COLS)}
           onRemove={i => s.removeRow(s.setNewSignatories, i)}
@@ -394,8 +394,8 @@ export default function Step2Amendments({ s, setActiveTab, setGeneratedHTML }) {
         />
       </div>
 
-      <div style={{marginTop:20}}>
-        <button className="btn" onClick={doGenerate}>⚖ Generate Legal Documents →</button>
+      <div style={{display:'flex', justifyContent:'flex-end', marginTop:24}}>
+        <button className="btn btn-gold" onClick={doGenerate}>⚖ Generate Legal Documents →</button>
       </div>
     </div>
   );

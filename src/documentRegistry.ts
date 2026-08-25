@@ -2,7 +2,7 @@
  * Central catalog of every document generator in the suite.
  *
  * This is the single source of truth for the landing page search bar,
- * the "browse by category" grid, and the routing between modules.
+ * the "browse by category" grid, and the routing between templates.
  *
  * To add a new document later: add one entry here and point it at the
  * module + target that should open. Nothing else needs to change on the
@@ -15,7 +15,7 @@ export interface DocumentEntry {
   id: string;
   title: string;
   description: string;
-  /** Top-level category shown on the landing page (e.g. "Contracts"). */
+  /** Top-level category shown on the landing page (e.g. "SEC", "Proposals", "SPA", "Amendments"). */
   category: string;
   /** Optional sub-content grouping within a category. */
   subCategory?: string;
@@ -28,72 +28,68 @@ export interface DocumentEntry {
 }
 
 export const DOCUMENT_CATALOG: DocumentEntry[] = [
-  // ───────────────── Contracts ─────────────────
-  {
-    id: 'aoi-corporate',
-    title: 'Articles of Amendment — Corporation',
-    description:
-      'Amend the Articles of Incorporation for a corporation, with AI-assisted extraction from an existing AOI.',
-    category: 'Contracts',
-    subCategory: 'Articles of Amendment',
-    module: 'amendment',
-    target: 'corporate',
-    keywords: ['aoi', 'incorporation', 'corporate', 'sec', 'amendment'],
-  },
-  {
-    id: 'aoi-partnership',
-    title: 'Articles of Amendment — Partnership',
-    description:
-      'Amend the Articles of Partnership, with AI-assisted extraction from an existing AOP.',
-    category: 'Contracts',
-    subCategory: 'Articles of Amendment',
-    module: 'amendment',
-    target: 'partnership',
-    keywords: ['aop', 'partnership', 'sec', 'amendment'],
-  },
-  {
-    id: 'spa',
-    title: 'Special Power of Attorney (SPA)',
-    description:
-      'Draft an SPA for BIR, LGU, SSS, PhilHealth, or Pag-IBIG transactions, with AI-refined purpose clauses.',
-    category: 'Contracts',
-    subCategory: 'Special Power of Attorney',
-    module: 'corpo',
-    target: 'spa',
-    keywords: ['spa', 'power of attorney', 'bir', 'lgu', 'sss', 'philhealth', 'pag-ibig'],
-  },
+  // ───────────────── SEC ─────────────────
   {
     id: 'sec-cert-standard',
-    title: "Secretary's Certificate (Standard)",
-    description: 'Standard Secretary\'s Certificate with board resolution clauses.',
-    category: 'Contracts',
-    subCategory: "Secretary's Certificate",
+    title: 'SEC Certificate (Standard)',
+    description: 'Drafting tool for standard SEC Certificates and documentation',
+    category: 'SEC',
     module: 'corpo',
     target: 'sec',
-    keywords: ['secretary', 'certificate', 'board resolution', 'sec'],
+    keywords: ['sec', 'secretary', 'certificate', 'standard', 'board resolution'],
   },
   {
     id: 'sec-cert-no-dispute',
-    title: "Secretary's Certificate (No Intra-Corporate Dispute)",
-    description: 'Certification of no intra-corporate dispute for SEC filing purposes.',
-    category: 'Contracts',
-    subCategory: "Secretary's Certificate",
+    title: 'SEC Certificate (No Dispute)',
+    description: 'Form for Certification of No Intra-Corporate Dispute',
+    category: 'SEC',
     module: 'corpo',
     target: 'sec_dispute',
-    keywords: ['secretary', 'certificate', 'dispute', 'sec'],
+    keywords: ['sec', 'secretary', 'certificate', 'dispute', 'intra-corporate', 'no dispute'],
   },
 
   // ───────────────── Proposals ─────────────────
   {
     id: 'incorporation-proposal',
-    title: 'Incorporation Contract Proposal',
-    description:
-      'Client-facing service proposal for incorporation engagements, with custom phases, fees, and discounts.',
+    title: 'Incorporation Contract',
+    description: 'Contract Proposal for Incorporation with custom billing options',
     category: 'Proposals',
-    subCategory: 'Incorporation',
     module: 'corpo',
     target: 'proposal',
-    keywords: ['proposal', 'billing', 'fees', 'engagement', 'quotation'],
+    keywords: ['proposal', 'incorporation', 'contract', 'billing', 'fees', 'engagement'],
+  },
+
+  // ───────────────── SPA ─────────────────
+  {
+    id: 'spa',
+    title: 'SPA Draft',
+    description: 'Special Power of Attorney drafting tailored for STLAF matters',
+    category: 'SPA',
+    module: 'corpo',
+    target: 'spa',
+    keywords: ['spa', 'draft', 'power of attorney', 'bir', 'lgu', 'sss', 'philhealth', 'pag-ibig'],
+  },
+
+  // ───────────────── Amendments ─────────────────
+  {
+    id: 'aoi-corporate',
+    title: 'Corporate AOI',
+    description:
+      'Amended Articles of Incorporation drafting tailored for STLAF matters. Features AI-powered extraction.',
+    category: 'Amendments',
+    module: 'amendment',
+    target: 'corporate',
+    keywords: ['aoi', 'corporate', 'amended articles of incorporation', 'amendment', 'sec', 'ammendments'],
+  },
+  {
+    id: 'aoi-partnership',
+    title: 'Partnership AOP',
+    description:
+      'Drafting tool for Partnership businesses. Standard SEC compliant documentation.',
+    category: 'Amendments',
+    module: 'amendment',
+    target: 'partnership',
+    keywords: ['aop', 'partnership', 'articles of partnership', 'amendment', 'sec', 'ammendments'],
   },
 ];
 

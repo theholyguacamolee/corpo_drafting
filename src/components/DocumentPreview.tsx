@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Scale } from 'lucide-react';
-import { SPADetails, SecDetails, ProposalDetails } from '../types';
+import { SPADetails, SecDetails, ProposalDetails } from '@/templates/corpo/types';
 import { cn } from '@/lib/utils';
 
 interface DocumentPreviewProps {

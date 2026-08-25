@@ -49,7 +49,7 @@ Respond ONLY with valid JSON in this exact format, and nothing else:
 }`;
     const genAI = await getGenAI();
     const response = await genAI.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.6-flash",
       contents: [{ role: "user", parts: [{ text: prompt }] }],
       config: { responseMimeType: "application/json" },
     });
@@ -109,7 +109,7 @@ PDF TEXT:
 ${text.substring(0, 50000)}`;
     const genAI = await getGenAI();
     const response = await genAI.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.6-flash",
       contents: [{ role: "user", parts: [{ text: prompt }] }],
       config: { responseMimeType: "application/json" },
     });

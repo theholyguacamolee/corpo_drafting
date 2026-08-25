@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import TableEditor from "./shared/TableEditor";
-import { BASE_PARTNER_COLS, BASE_CONTRIB_COLS, SIGNATORY_COLS } from "../hooks/usePartnershipState";
-import { formatDate } from "../utils/helpers";
+import TableEditor from "@/components/TableEditor";
+import { BASE_PARTNER_COLS, BASE_CONTRIB_COLS, SIGNATORY_COLS } from "@/templates/amendments/hooks/usePartnershipState";
+import { formatDate } from "@/templates/amendments/utils/helpers";
 
 export default function Step1BaselinePartnership({ s, setActiveTab }) {
   const [tradeNameInput, setTradeNameInput] = useState('');
@@ -58,7 +58,7 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
   }
 
   function statusColor(type) {
-    return type === 'ok' ? '#4caf50' : type === 'err' ? '#f44336' : '#c9a651';
+    return type === 'ok' ? '#16a34a' : type === 'err' ? '#dc2626' : '#ccaa49';
   }
 
   // ── Extraction summary render ──
@@ -75,35 +75,38 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
       ['Signatories', Array.isArray(d.signatories) ? d.signatories.length+' row(s)' : ''],
     ];
     return (
-      <div style={{marginTop:12,background:'#0d1117',borderRadius:6,padding:12,border:'1px solid var(--border)'}}>
-        <p style={{color:'var(--gold)',fontWeight:700,fontSize:'.82rem',margin:'0 0 6px 0'}}>✅ Extraction Complete — Fields Populated:</p>
-        <div style={{fontSize:'.78rem',color:'#8b949e',lineHeight:1.8}}>
+      <div className="summary-box">
+        <p style={{color:'var(--navy)',fontWeight:700,fontSize:'.85rem',margin:'0 0 8px 0'}}>✅ Extraction Complete — Fields Populated:</p>
+        <div style={{fontSize:'.8rem',color:'var(--text-secondary)',lineHeight:1.8}}>
           {checks.map(([label, val]) => {
             const ok = val && String(val).trim() !== '';
-            return <span key={label} style={{color: ok?'#4caf50':'#f44336', marginRight:16, display:'inline-block'}}>
+            return <span key={label} style={{color: ok?'#16a34a':'#dc2626', marginRight:16, display:'inline-block'}}>
               {ok?'✓':'✗'} <b>{label}:</b> {ok ? String(val) : 'Not found'}<br/>
             </span>;
           })}
         </div>
+        <p style={{fontSize:'.75rem',color:'var(--text-muted)',margin:'10px 0 0 0'}}>Review and correct any fields below before proceeding.</p>
       </div>
     );
   }
 
   return (
     <div>
-      <h2>Step 1 — Baseline Partnership AOP Data <span style={{fontSize:'.8rem',color:'#8b949e',fontWeight:400}}>(Current "FROM" State)</span></h2>
+      <div style={{display:'flex', alignItems:'center', gap:10, marginBottom: 16}}>
+        <h2>Step 1 — Baseline Partnership Data <span style={{fontSize:'.85rem',color:'var(--text-muted)',fontWeight:400}}>(Current "FROM" State)</span></h2>
+      </div>
 
       {/* Upload card */}
       <div className="card">
         <h3>📂 Upload Existing AOP — AI Auto-Extraction</h3>
-        <p style={{fontSize:'.8rem',color:'#8b949e',margin:'0 0 10px 0'}}>Upload the partnership's current AOP (PDF). The AI will read the document and fill all fields automatically.</p>
+        <p style={{fontSize:'.85rem',color:'var(--text-secondary)',margin:'0 0 14px 0'}}>Upload the partnership's current Articles of Partnership (PDF). The AI will read the document and fill all fields automatically.</p>
         <input type="file" accept=".pdf" onChange={handleFile} />
         {fileStatus && (
-          <div style={{fontSize:'.82rem',marginTop:8}}>
+          <div style={{fontSize:'.85rem',marginTop:10}}>
             <span style={{color: statusColor(fileStatus.type), fontWeight:700}}>
               {fileStatus.type==='ok'?'✓':fileStatus.type==='err'?'✗':'⟳'}
             </span>{' '}
-            <span style={{color: fileStatus.type==='err'?'#f44336':'#ccc'}}>{fileStatus.msg}</span>
+            <span style={{color: fileStatus.type==='err'?'#dc2626':'var(--text-secondary)'}}>{fileStatus.msg}</span>
             {fileStatus.isCookieErr && (
               <div style={{marginTop:10}}>
                 <a 
@@ -115,7 +118,7 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
                 >
                   🔗 Open in New Tab to Repair Connection
                 </a>
-                <p style={{fontSize:'.7rem', color:'#555', marginTop:6}}>After the new tab loads, you can return here or work in that tab.</p>
+                <p style={{fontSize:'.72rem', color:'var(--text-muted)', marginTop:6}}>After the new tab loads, you can return here or work in that tab.</p>
               </div>
             )}
           </div>
@@ -128,22 +131,23 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
         <h3>Article I — Partnership Name</h3>
         <div className="input-grid">
           <div className="full">
-            <label className="field-label">CURRENT REGISTERED NAME</label>
-            <input type="text" value={s.baseName} onChange={e => s.setBaseName(e.target.value.toUpperCase())} placeholder="REQUIRES CLIENT INPUT" />
+            <label className="field-label">Current Registered Partnership Name</label>
+            <input type="text" value={s.baseName} onChange={e => s.setBaseName(e.target.value)} placeholder="REQUIRES CLIENT INPUT" />
           </div>
           <div className="full">
-            <label className="field-label">ARTICLE I — PRIOR AMENDMENT DATE (IF PREVIOUSLY AMENDED)</label>
+            <label className="field-label">Article I — Prior Amendment Date</label>
             <input type="date" value={s.baseArt1AmdDate} onChange={e => s.setBaseArt1AmdDate(e.target.value)} />
           </div>
           <div className="full">
-            <label className="field-label">FORMER NAME (IF CURRENT NAME WAS PREVIOUSLY CHANGED — LEAVE BLANK IF ORIGINAL NAME)</label>
-            <input type="text" value={s.baseFormerly} onChange={e => s.setBaseFormerly(e.target.value.toUpperCase())} placeholder="e.g. RIZAL POULTRY FARM CORPORATION" />
-            <p style={{fontSize:'.72rem',color:'#555',margin:'4px 0 0 0'}}>Only fill if previously known by a different name. Appears as "Formerly: [NAME]" in the document.</p>
+            <label className="field-label">Former Name (leave blank if original name)</label>
+            <input type="text" value={s.baseFormerly} onChange={e => s.setBaseFormerly(e.target.value)} placeholder="e.g. OLD PARTNERSHIP NAME & CO." />
+            <p style={{fontSize:'.75rem',color:'var(--text-muted)',margin:'6px 0 0 0'}}>Only fill if previously known by a different name. Appears as "Formerly: [NAME]" in the document.</p>
           </div>
           <div className="full">
-            <label className="field-label">TRADE NAME(S) — "DOING BUSINESS UNDER THE NAME/S AND STYLE/S OF"</label>
+            <label className="field-label">Trade Name(s) — "Doing Business Under the Name/s and Style/s of"</label>
+            <p style={{fontSize:'.75rem',color:'var(--text-muted)',margin:'4px 0 8px 0'}}>Auto-extracted from AOP. Add, edit, or remove trade names as needed.</p>
             {s.baseTradeNames.length === 0
-              ? <p style={{fontSize:'.78rem',color:'#555',margin:'4px 0'}}>No trade names added yet.</p>
+              ? <p style={{fontSize:'.8rem',color:'var(--text-muted)',margin:'6px 0'}}>No trade names added yet.</p>
               : s.baseTradeNames.map((name, i) => (
                 <div key={i} className="trade-name-tag">
                   <span>{name}</span>
@@ -155,7 +159,7 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
               <input
                 type="text"
                 value={tradeNameInput}
-                placeholder="e.g. RIZAL FARMS"
+                placeholder="e.g. PARTNERSHIP TRADING"
                 onChange={e => setTradeNameInput(e.target.value)}
                 onKeyDown={e => { if(e.key==='Enter'){s.addBaseTradeName(tradeNameInput);setTradeNameInput('');e.preventDefault();}}}
               />
@@ -167,23 +171,15 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
 
       {/* Article II */}
       <div className="card">
-        <h3>Article II — Primary & Secondary Purpose</h3>
+        <h3>Article II — Purpose of Partnership</h3>
         <div className="input-grid">
           <div className="full">
             <label className="field-label">CURRENT PRIMARY PURPOSE</label>
             <textarea value={s.basePurpose} onChange={e => s.setBasePurpose(e.target.value)} placeholder="REQUIRES CLIENT INPUT" rows={4} />
           </div>
           <div className="full">
-            <label className="field-label">DATE PRIMARY PURPOSE WAS LAST AMENDED (LEAVE BLANK IF ORIGINAL)</label>
-            <input type="date" value={s.baseArt2PrimaryAmdDate} onChange={e => s.setBaseArt2PrimaryAmdDate(e.target.value)} />
-          </div>
-          <div className="full">
-            <label className="field-label">CURRENT SECONDARY PURPOSE(S)</label>
-            <textarea value={s.baseSecPurpose} onChange={e => s.setBaseSecPurpose(e.target.value)} placeholder="REQUIRES CLIENT INPUT (leave blank if none)" rows={3} />
-          </div>
-          <div className="full">
-            <label className="field-label">DATE SECONDARY PURPOSE(S) WAS LAST AMENDED (LEAVE BLANK IF ORIGINAL)</label>
-            <input type="date" value={s.baseArt2SecondaryAmdDate} onChange={e => s.setBaseArt2SecondaryAmdDate(e.target.value)} />
+            <label className="field-label">DATE PURPOSE WAS LAST AMENDED (LEAVE BLANK IF ORIGINAL)</label>
+            <input type="date" value={s.baseArt2AmdDate} onChange={e => s.setBaseArt2AmdDate(e.target.value)} />
           </div>
         </div>
       </div>
@@ -191,16 +187,28 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
       {/* Article III */}
       <div className="card">
         <h3>Article III — Principal Office</h3>
-        <p style={{fontSize:'.78rem',color:'#8b949e',margin:'0 0 8px 0'}}>Only fill No./Street if the document explicitly states a street address with a number or street type keyword. Leave blank if the document only lists barangay/city.</p>
+        <p style={{fontSize:'.82rem',color:'var(--text-muted)',margin:'0 0 10px 0'}}>Only fill No./Street if the document explicitly states a street address with a number or street type keyword. Leave blank if the document only lists barangay/city.</p>
         <div className="input-grid">
           <div className="full">
             <label className="field-label">NO. / STREET (LEAVE BLANK IF NOT EXPLICITLY IN DOCUMENT)</label>
-            <input type="text" value={s.baseStreet} onChange={e => s.setBaseStreet(e.target.value)} placeholder="e.g. 293 General Ordonez Street — leave blank if not stated" />
+            <input type="text" value={s.baseStreet} onChange={e => s.setBaseStreet(e.target.value)} placeholder="e.g. 123 Main Street — leave blank if not stated" />
           </div>
-          <div><label className="field-label">BARANGAY / DISTRICT</label><input type="text" value={s.baseBrgy} onChange={e => s.setBaseBrgy(e.target.value)} placeholder="e.g. Barangay Palma Dos" /></div>
-          <div><label className="field-label">CITY / MUNICIPALITY</label><input type="text" value={s.baseCity} onChange={e => s.setBaseCity(e.target.value)} placeholder="e.g. City of Alaminos" /></div>
-          <div><label className="field-label">PROVINCE / REGION</label><input type="text" value={s.baseProv} onChange={e => s.setBaseProv(e.target.value)} placeholder="e.g. Pangasinan" /></div>
-          <div><label className="field-label">ZIP CODE (OPTIONAL)</label><input type="text" value={s.baseZip} onChange={e => s.setBaseZip(e.target.value)} placeholder="e.g. 1810" /></div>
+          <div>
+            <label className="field-label">BARANGAY / DISTRICT</label>
+            <input type="text" value={s.baseBrgy} onChange={e => s.setBaseBrgy(e.target.value)} placeholder="e.g. Barangay San Antonio" />
+          </div>
+          <div>
+            <label className="field-label">CITY / MUNICIPALITY</label>
+            <input type="text" value={s.baseCity} onChange={e => s.setBaseCity(e.target.value)} placeholder="e.g. Pasig City" />
+          </div>
+          <div>
+            <label className="field-label">PROVINCE / REGION</label>
+            <input type="text" value={s.baseProv} onChange={e => s.setBaseProv(e.target.value)} placeholder="e.g. Metro Manila" />
+          </div>
+          <div>
+            <label className="field-label">ZIP CODE (OPTIONAL)</label>
+            <input type="text" value={s.baseZip} onChange={e => s.setBaseZip(e.target.value)} placeholder="e.g. 1600" />
+          </div>
           <div className="full">
             <label className="field-label">ARTICLE III — PRIOR AMENDMENT DATE</label>
             <input type="date" value={s.baseArt3AmdDate} onChange={e => s.setBaseArt3AmdDate(e.target.value)} />
@@ -213,8 +221,8 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
         <h3>Article IV — Partnership Term</h3>
         <div className="input-grid">
           <div>
-            <label className="field-label">TERM (YEARS — ENTER 0 FOR PERPETUAL)</label>
-            <input type="number" value={s.baseTerm} onChange={e => s.setBaseTerm(e.target.value)} min={0} />
+            <label className="field-label">TERM (YEARS — ENTER 0 FOR PERPETUAL / CO-TERMINUS)</label>
+            <input type="number" value={s.baseTerm} onChange={e => s.setBaseTerm(e.target.value)} placeholder="e.g. 50 or 0 for perpetual" min={0} />
           </div>
           <div>
             <label className="field-label">ARTICLE IV — PRIOR AMENDMENT DATE</label>
@@ -223,9 +231,9 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
         </div>
       </div>
 
-      {/* Article V */}
+      {/* Article V — Partners */}
       <div className="card">
-        <h3>Article V — Partners</h3>
+        <h3>Article V — Partners Roster</h3>
         <TableEditor
           cols={BASE_PARTNER_COLS}
           rows={s.basePartners}
@@ -235,51 +243,48 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
         />
       </div>
 
-      {/* Article VI */}
+      {/* Article VI — Capital Contributions */}
       <div className="card">
-        <h3>Article VI — Partnership Capital</h3>
+        <h3>Article VI — Capital Structure</h3>
         <div className="input-grid">
           <div className="full">
-            <label className="field-label">Total Capital in Words</label>
-            <input type="text" value={s.baseAmountWords} onChange={e => s.setBaseAmountWords(e.target.value)} placeholder="e.g. ONE MILLION PESOS" />
+            <label className="field-label">Total Capital Contribution (in words, ALL CAPS)</label>
+            <input type="text" value={s.baseAmountWords} onChange={e => s.setBaseAmountWords(e.target.value)} placeholder="e.g. FIVE HUNDRED THOUSAND PESOS" />
           </div>
-          <div className="full">
-            <label className="field-label">Total Capital Amount (₱)</label>
-            <input 
-              type="text" 
-              value={s.baseAmountNum} 
-              onChange={e => s.setBaseAmountNum(e.target.value)} 
-              onBlur={e => {
-                const numeric = parseFloat(e.target.value.replace(/,/g, ''));
-                if (!isNaN(numeric)) {
-                  s.setBaseAmountNum(numeric.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
-                }
-              }}
-              placeholder="e.g. 1,000,000.00" 
-            />
+          <div>
+            <label className="field-label">Total Amount (₱)</label>
+            <input type="text" value={s.baseAmountNum} onChange={e => s.setBaseAmountNum(e.target.value)} placeholder="e.g. 500,000.00" />
+          </div>
+          <div>
+            <label className="field-label">Article VI — Prior Amendment Date</label>
+            <input type="date" value={s.baseArt6AmdDate} onChange={e => s.setBaseArt6AmdDate(e.target.value)} />
           </div>
         </div>
-        <label className="field-label" style={{marginTop:14}}>Contribution Roster</label>
+        <label className="field-label" style={{marginTop:16}}>Partner Contributions Table</label>
         <TableEditor
           cols={BASE_CONTRIB_COLS}
-          rows={s.baseContributions}
+          rows={s.baseContributions || []}
           onAdd={() => s.addRow(s.setBaseContributions, BASE_CONTRIB_COLS)}
           onRemove={i => s.removeRow(s.setBaseContributions, i)}
           onUpdate={(i,c,v) => s.updateRow(s.setBaseContributions, i, c, v)}
         />
       </div>
 
-      {/* Article VIII */}
+      {/* Article VII — Management */}
       <div className="card">
-        <h3>Article VIII — Management</h3>
-        <label className="field-label">General Manager</label>
-        <input type="text" value={s.baseGeneralManager} onChange={e => s.setBaseGeneralManager(e.target.value)} placeholder="Name of General Manager" />
-        <p style={{fontSize:'.72rem',color:'#555',margin:'4px 0 0 0'}}>Only a General Partner can be the General Manager.</p>
+        <h3>Article VII — Management & General Manager</h3>
+        <div className="input-grid">
+          <div className="full">
+            <label className="field-label">General Manager Name</label>
+            <input type="text" value={s.baseGeneralManager} onChange={e => s.setBaseGeneralManager(e.target.value)} placeholder="REQUIRES CLIENT INPUT" />
+          </div>
+        </div>
       </div>
 
       {/* Signatories */}
-      <div className="card" style={{borderColor:'var(--gold)'}}>
-        <h3 style={{color:'var(--gold)'}}>📝 Document Signatories</h3>
+      <div className="card">
+        <h3>📝 Document Signatories</h3>
+        <p style={{fontSize:'.82rem',color:'var(--text-secondary)',margin:'0 0 14px 0'}}>Partners who will physically sign the Amended Articles of Partnership.</p>
         <TableEditor
           cols={SIGNATORY_COLS}
           rows={s.signatories}
@@ -290,7 +295,9 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
         />
       </div>
 
-      <button className="btn" onClick={() => setActiveTab('amend')}>Next: Select Amendments →</button>
+      <div style={{display:'flex', justifyContent:'flex-end', marginTop: 24}}>
+        <button className="btn" onClick={() => setActiveTab('amend')}>Next: Select Amendments →</button>
+      </div>
     </div>
   );
 }

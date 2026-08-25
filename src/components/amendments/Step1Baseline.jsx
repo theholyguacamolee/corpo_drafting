@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import TableEditor from "./shared/TableEditor";
-import { BASE_INCORP_COLS, BASE_DIR_COLS, BASE_SUBS_COLS, SIGNATORY_COLS } from "../hooks/useAppState";
-import { formatDate } from "../utils/helpers";
+import TableEditor from "@/components/TableEditor";
+import { BASE_INCORP_COLS, BASE_DIR_COLS, BASE_SUBS_COLS, SIGNATORY_COLS } from "@/templates/amendments/hooks/useAppState";
+import { formatDate } from "@/templates/amendments/utils/helpers";
 
 export default function Step1Baseline({ s, setActiveTab }) {
   const [tradeNameInput, setTradeNameInput] = useState('');
@@ -59,7 +59,7 @@ export default function Step1Baseline({ s, setActiveTab }) {
   }
 
   function statusColor(type) {
-    return type === 'ok' ? '#4caf50' : type === 'err' ? '#f44336' : '#c9a651';
+    return type === 'ok' ? '#16a34a' : type === 'err' ? '#dc2626' : '#ccaa49';
   }
 
   // ── Extraction summary render ──
@@ -84,38 +84,38 @@ export default function Step1Baseline({ s, setActiveTab }) {
       ['Signatories', Array.isArray(d.signatories) ? d.signatories.length+' row(s)' : ''],
     ];
     return (
-      <div style={{marginTop:12,background:'#0d1117',borderRadius:6,padding:12,border:'1px solid var(--border)'}}>
-        <p style={{color:'var(--gold)',fontWeight:700,fontSize:'.82rem',margin:'0 0 6px 0'}}>✅ Extraction Complete — Fields Populated:</p>
-        <div style={{fontSize:'.78rem',color:'#8b949e',lineHeight:1.8}}>
+      <div className="summary-box">
+        <p style={{color:'var(--navy)',fontWeight:700,fontSize:'.85rem',margin:'0 0 8px 0'}}>✅ Extraction Complete — Fields Populated:</p>
+        <div style={{fontSize:'.8rem',color:'var(--text-secondary)',lineHeight:1.8}}>
           {checks.map(([label, val]) => {
             const ok = val && String(val).trim() !== '';
-            return <span key={label} style={{color: ok?'#4caf50':'#f44336', marginRight:16, display:'inline-block'}}>
+            return <span key={label} style={{color: ok?'#16a34a':'#dc2626', marginRight:16, display:'inline-block'}}>
               {ok?'✓':'✗'} <b>{label}:</b> {ok ? String(val) : 'Not found'}<br/>
             </span>;
           })}
         </div>
-        <p style={{fontSize:'.75rem',color:'#555',margin:'8px 0 0 0'}}>Review and correct any fields below before proceeding.</p>
+        <p style={{fontSize:'.75rem',color:'var(--text-muted)',margin:'10px 0 0 0'}}>Review and correct any fields below before proceeding.</p>
       </div>
     );
   }
 
   return (
     <div>
-      <div style={{display:'flex', alignItems:'center', gap:10}}>
-        <h2>Step 1 — Baseline AOI Data <span style={{fontSize:'.8rem',color:'#8b949e',fontWeight:400}}>(Current "FROM" State)</span></h2>
+      <div style={{display:'flex', alignItems:'center', gap:10, marginBottom: 16}}>
+        <h2>Step 1 — Baseline AOI Data <span style={{fontSize:'.85rem',color:'var(--text-muted)',fontWeight:400}}>(Current "FROM" State)</span></h2>
       </div>
 
       {/* Upload card */}
       <div className="card">
         <h3>📂 Upload Existing AOI — AI Auto-Extraction</h3>
-        <p style={{fontSize:'.8rem',color:'#8b949e',margin:'0 0 10px 0'}}>Upload the company's current AOI (PDF). The AI will read the document and fill all fields automatically.</p>
+        <p style={{fontSize:'.85rem',color:'var(--text-secondary)',margin:'0 0 14px 0'}}>Upload the company's current AOI (PDF). The AI will read the document and fill all fields automatically.</p>
         <input type="file" accept=".pdf" onChange={handleFile} />
         {fileStatus && (
-          <div style={{fontSize:'.82rem',marginTop:8}}>
+          <div style={{fontSize:'.85rem',marginTop:10}}>
             <span style={{color: statusColor(fileStatus.type), fontWeight:700}}>
               {fileStatus.type==='ok'?'✓':fileStatus.type==='err'?'✗':'⟳'}
             </span>{' '}
-            <span style={{color: fileStatus.type==='err'?'#f44336':'#ccc'}}>{fileStatus.msg}</span>
+            <span style={{color: fileStatus.type==='err'?'#dc2626':'var(--text-secondary)'}}>{fileStatus.msg}</span>
             {fileStatus.isCookieErr && (
               <div style={{marginTop:10}}>
                 <a 
@@ -127,7 +127,7 @@ export default function Step1Baseline({ s, setActiveTab }) {
                 >
                   🔗 Open in New Tab to Repair Connection
                 </a>
-                <p style={{fontSize:'.7rem', color:'#555', marginTop:6}}>After the new tab loads, you can return here or work in that tab.</p>
+                <p style={{fontSize:'.72rem', color:'var(--text-muted)', marginTop:6}}>After the new tab loads, you can return here or work in that tab.</p>
               </div>
             )}
           </div>
@@ -150,12 +150,12 @@ export default function Step1Baseline({ s, setActiveTab }) {
           <div className="full">
             <label className="field-label">Former Name (leave blank if original name)</label>
             <input type="text" value={s.baseFormerly} onChange={e => s.setBaseFormerly(e.target.value)} placeholder="e.g. RIZAL POULTRY FARM CORPORATION" />
-            <p style={{fontSize:'.72rem',color:'#555',margin:'4px 0 0 0'}}>Only fill if previously known by a different name. Appears as "Formerly: [NAME]" in the document.</p>
+            <p style={{fontSize:'.75rem',color:'var(--text-muted)',margin:'6px 0 0 0'}}>Only fill if previously known by a different name. Appears as "Formerly: [NAME]" in the document.</p>
           </div>
           <div className="full">
             <label className="field-label">Former Trade Name(s) (associated with the former name above)</label>
             {s.baseFormerlyTradeNames.length === 0
-              ? <p style={{fontSize:'.78rem',color:'#555',margin:'4px 0'}}>No former trade names added.</p>
+              ? <p style={{fontSize:'.8rem',color:'var(--text-muted)',margin:'6px 0'}}>No former trade names added.</p>
               : s.baseFormerlyTradeNames.map((name, i) => (
                 <div key={i} className="trade-name-tag">
                   <span>{name}</span>
@@ -176,9 +176,9 @@ export default function Step1Baseline({ s, setActiveTab }) {
           </div>
           <div className="full">
             <label className="field-label">Trade Name(s) — "Doing Business Under the Name/s and Style/s of"</label>
-            <p style={{fontSize:'.72rem',color:'#555',margin:'4px 0 6px 0'}}>Auto-extracted from AOI. Add, edit, or remove trade names as needed.</p>
+            <p style={{fontSize:'.75rem',color:'var(--text-muted)',margin:'4px 0 8px 0'}}>Auto-extracted from AOI. Add, edit, or remove trade names as needed.</p>
             {s.baseTradeNames.length === 0
-              ? <p style={{fontSize:'.78rem',color:'#555',margin:'4px 0'}}>No trade names added yet.</p>
+              ? <p style={{fontSize:'.8rem',color:'var(--text-muted)',margin:'6px 0'}}>No trade names added yet.</p>
               : s.baseTradeNames.map((name, i) => (
                 <div key={i} className="trade-name-tag">
                   <span>{name}</span>
@@ -226,7 +226,7 @@ export default function Step1Baseline({ s, setActiveTab }) {
       {/* Article III */}
       <div className="card">
         <h3>Article III — Principal Office</h3>
-        <p style={{fontSize:'.78rem',color:'#8b949e',margin:'0 0 8px 0'}}>Only fill No./Street if the document explicitly states a street address with a number or street type keyword. Leave blank if the document only lists barangay/city.</p>
+        <p style={{fontSize:'.82rem',color:'var(--text-muted)',margin:'0 0 10px 0'}}>Only fill No./Street if the document explicitly states a street address with a number or street type keyword. Leave blank if the document only lists barangay/city.</p>
         <div className="input-grid">
           <div className="full">
             <label className="field-label">NO. / STREET (LEAVE BLANK IF NOT EXPLICITLY IN DOCUMENT)</label>
@@ -295,7 +295,7 @@ export default function Step1Baseline({ s, setActiveTab }) {
             <input type="date" value={s.baseArt6AmdDate} onChange={e => s.setBaseArt6AmdDate(e.target.value)} />
           </div>
         </div>
-        <label className="field-label" style={{marginTop:14}}>Director Roster</label>
+        <label className="field-label" style={{marginTop:16}}>Director Roster</label>
         <TableEditor
           cols={BASE_DIR_COLS}
           rows={s.baseDirs}
@@ -330,7 +330,7 @@ export default function Step1Baseline({ s, setActiveTab }) {
             <input type="date" value={s.baseArt7AmdDate} onChange={e => s.setBaseArt7AmdDate(e.target.value)} />
           </div>
         </div>
-        <label className="field-label" style={{marginTop:14}}>Subscription Table (Articles VIII / IX)</label>
+        <label className="field-label" style={{marginTop:16}}>Subscription Table (Articles VIII / IX)</label>
         <TableEditor
           cols={BASE_SUBS_COLS}
           rows={s.baseSubs}
@@ -386,9 +386,9 @@ export default function Step1Baseline({ s, setActiveTab }) {
       </div>
 
       {/* Signatories */}
-      <div className="card" style={{borderColor:'var(--gold)'}}>
-        <h3 style={{color:'var(--gold)'}}>📝 Document Signatories</h3>
-        <p style={{fontSize:'.8rem',color:'#8b949e',margin:'0 0 12px 0'}}>Persons who will physically sign the Amended AOI. Extracted from the signature block of the uploaded AOI.</p>
+      <div className="card">
+        <h3>📝 Document Signatories</h3>
+        <p style={{fontSize:'.82rem',color:'var(--text-secondary)',margin:'0 0 14px 0'}}>Persons who will physically sign the Amended AOI. Extracted from the signature block of the uploaded AOI.</p>
         <TableEditor
           cols={SIGNATORY_COLS}
           rows={s.signatories}
@@ -399,7 +399,9 @@ export default function Step1Baseline({ s, setActiveTab }) {
         />
       </div>
 
-      <button className="btn" onClick={() => setActiveTab('amend')}>Next: Select Amendments →</button>
+      <div style={{display:'flex', justifyContent:'flex-end', marginTop: 24}}>
+        <button className="btn" onClick={() => setActiveTab('amend')}>Next: Select Amendments →</button>
+      </div>
     </div>
   );
 }

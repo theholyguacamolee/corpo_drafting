@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import Sidebar from "./components/Sidebar";
-import Step1Baseline from "./components/Step1Baseline";
-import Step2Amendments from "./components/Step2Amendments";
-import Step3Preview from "./components/Step3Preview";
-import Step1BaselinePartnership from "./components/Step1BaselinePartnership";
-import Step2AmendmentsPartnership from "./components/Step2AmendmentsPartnership";
-import Step3PreviewPartnership from "./components/Step3PreviewPartnership";
-import LandingPage from "./components/LandingPage";
-import Header from "./components/Header";
+import Sidebar from "@/components/amendments/Sidebar";
+import Step1Baseline from "@/components/amendments/Step1Baseline";
+import Step2Amendments from "@/components/amendments/Step2Amendments";
+import Step3Preview from "@/components/amendments/Step3Preview";
+import Step1BaselinePartnership from "@/components/amendments/Step1BaselinePartnership";
+import Step2AmendmentsPartnership from "@/components/amendments/Step2AmendmentsPartnership";
+import Step3PreviewPartnership from "@/components/amendments/Step3PreviewPartnership";
+import { GlobalHeader } from "@/components/GlobalHeader";
 import { useAppState } from "./hooks/useAppState";
 import { usePartnershipState } from "./hooks/usePartnershipState";
 import "./amendment-scoped.css";
@@ -15,42 +14,22 @@ import "./amendment-scoped.css";
 /**
  * @param {{ initialView?: 'corporate' | 'partnership', onHome?: () => void }} props
  */
-export default function App({ initialView, onHome } = {}) {
+export default function App({ initialView = 'corporate', onHome } = {}) {
   const corporateState = useAppState();
   const partnershipState = usePartnershipState();
   const [generatedHTML, setGeneratedHTML] = useState('');
-  const [currentView, setCurrentView] = useState(initialView || 'home'); // 'home' | 'corporate' | 'partnership'
-
-  const handleSelectTool = (toolId) => {
-    setCurrentView(toolId);
-  };
+  const currentView = initialView; // Driven entirely by the route from HomeLanding
 
   const s = currentView === 'corporate' ? corporateState : partnershipState;
-  const docType = currentView === 'corporate' ? 'AOI' : 'AOP';
-
-  const handleHome = () => {
-    // Go back to the suite-wide landing page (search + categories) if available,
-    // otherwise fall back to this module's own tool picker.
-    if (onHome) {
-      onHome();
-      return;
-    }
-    if (currentView === 'corporate') corporateState.reset();
-    if (currentView === 'partnership') partnershipState.reset();
-    setCurrentView('home');
-  };
-
-  if (currentView === 'home') {
-    return (
-      <div className="amendment-scope">
-        <LandingPage onSelectTool={handleSelectTool} />
-      </div>
-    );
-  }
+  const docType = currentView === 'corporate' ? 'Corporate AOI' : 'Partnership AOP';
 
   return (
     <div className="amendment-scope" style={{ display:'flex', flexDirection: 'column', height:'100vh', overflow:'hidden', backgroundColor: 'var(--bg)' }}>
-      <Header showHomeButton onHome={handleHome} type={docType} />
+      <GlobalHeader
+        title={docType}
+        subtitle="Articles of Amendment Drafting"
+        onHome={onHome}
+      />
 
       {/* Extract overlay */}
       {s.overlayVisible && (
