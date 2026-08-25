@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import TableEditor from "./shared/TableEditor";
-import { NEW_PARTNER_COLS, NEW_CONTRIB_COLS, SIGNATORY_COLS } from "../hooks/usePartnershipState";
-import { PURPOSE_DB } from "../utils/purposeDb";
-import { generatePartnershipDocumentHTML } from "../utils/partnershipDocGenerator";
+import TableEditor from "@/components/TableEditor";
+import { NEW_PARTNER_COLS, NEW_CONTRIB_COLS, SIGNATORY_COLS } from "@/templates/amendments/hooks/usePartnershipState";
+import { PURPOSE_DB } from "@/templates/amendments/utils/purposeDb";
+import { generatePartnershipDocumentHTML } from "@/templates/amendments/utils/partnershipDocGenerator";
 
 const ARTICLES = [
   { id: '1',  label: 'Art. I — Name' },
@@ -63,7 +63,7 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
 
   return (
     <div>
-      <div style={{display:'flex', alignItems:'center', gap:10}}>
+      <div style={{display:'flex', alignItems:'center', gap:10, marginBottom: 16}}>
         <h2>Step 2 — Select &amp; Configure Amendments</h2>
       </div>
 
@@ -95,8 +95,8 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
 
       {isArt('1') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article I — Partnership Name</h3>
-          <p style={{fontSize:'.8rem',color:'#8b949e',margin:'0 0 8px 0'}}>CURRENT REGISTERED NAME: <b>{s.baseName || '—'}</b></p>
+          <h3 style={{color:'var(--navy)'}}>Article I — Partnership Name</h3>
+          <p style={{fontSize:'.82rem',color:'var(--text-secondary)',margin:'0 0 10px 0'}}>CURRENT REGISTERED NAME: <b>{s.baseName || '—'}</b></p>
           
           <div className="input-grid">
             <div className="full">
@@ -113,11 +113,11 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
             </div>
           </div>
           
-          <div style={{borderTop:'1px solid var(--border)',paddingTop:14,marginTop:12}}>
+          <div style={{borderTop:'1px solid var(--border)',paddingTop:16,marginTop:16}}>
             <label className="field-label" style={{marginTop:0}}>Amend Trade Name(s)?</label>
-            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.85rem',cursor:'pointer',marginBottom:12}}>
+            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.88rem',cursor:'pointer',marginBottom:14}}>
               <input type="checkbox" checked={s.amendTradeNames} onChange={e => handleAmendTradeToggle(e.target.checked)} style={{width:'auto',margin:0}} />
-              <span style={{color:'var(--gold)',fontWeight:700}}>Yes — amend trade names</span>
+              <span style={{color:'var(--navy)',fontWeight:700}}>Yes — amend trade names</span>
             </label>
             {s.amendTradeNames && (
               <div>
@@ -139,15 +139,15 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
 
       {isArt('2') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article II — Primary & Secondary Purpose</h3>
+          <h3 style={{color:'var(--navy)'}}>Article II — Primary & Secondary Purpose</h3>
           
-          <div style={{marginBottom: 16}}>
-            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.85rem',cursor:'pointer',marginBottom:12}}>
+          <div style={{marginBottom: 18}}>
+            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.88rem',cursor:'pointer',marginBottom:14}}>
               <input type="checkbox" checked={s.amendPrimary} onChange={e => s.setAmendPrimary(e.target.checked)} style={{width:'auto',margin:0}} />
-              <span style={{color:'var(--gold)',fontWeight:700}}>Amend Primary Purpose?</span>
+              <span style={{color:'var(--navy)',fontWeight:700}}>Amend Primary Purpose?</span>
             </label>
             {s.amendPrimary && (
-              <div style={{paddingLeft: 24, borderLeft: '2px solid var(--border)', marginBottom: 20}}>
+              <div style={{paddingLeft: 20, borderLeft: '2px solid var(--gold)', marginBottom: 20}}>
                 <div className="input-grid" style={{marginBottom: 16}}>
                   <div className="full">
                     <label className="field-label">NEW PRIMARY PURPOSE — PRIOR AMENDMENT DATE (IF PREVIOUSLY AMENDED)</label>
@@ -166,7 +166,7 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
                   ))}
                 </div>
                 {s.selectedPrimary && (
-                  <div className="sel-purpose-tag" style={{marginTop:10}}>
+                  <div className="sel-purpose-tag" style={{marginTop:12}}>
                     <span><b>{s.selectedPrimary.name}:</b> {s.selectedPrimary.text}</span>
                     <button onClick={() => s.setSelectedPrimary(null)}>✕</button>
                   </div>
@@ -176,12 +176,12 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
               </div>
             )}
 
-            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.85rem',cursor:'pointer',marginBottom:12}}>
+            <label style={{display:'flex',alignItems:'center',gap:10,fontSize:'.88rem',cursor:'pointer',marginBottom:14}}>
               <input type="checkbox" checked={s.amendSecondary} onChange={e => s.setAmendSecondary(e.target.checked)} style={{width:'auto',margin:0}} />
-              <span style={{color:'var(--gold)',fontWeight:700}}>Amend Secondary Purpose(s)?</span>
+              <span style={{color:'var(--navy)',fontWeight:700}}>Amend Secondary Purpose(s)?</span>
             </label>
             {s.amendSecondary && (
-              <div style={{paddingLeft: 24, borderLeft: '2px solid var(--border)'}}>
+              <div style={{paddingLeft: 20, borderLeft: '2px solid var(--gold)'}}>
                 <div className="input-grid" style={{marginBottom: 16}}>
                   <div className="full">
                     <label className="field-label">NEW SECONDARY PURPOSE(S) — PRIOR AMENDMENT DATE (IF PREVIOUSLY AMENDED)</label>
@@ -215,8 +215,8 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
 
       {isArt('3') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article III — Principal Office</h3>
-          <p style={{fontSize:'.78rem',color:'#8b949e',margin:'0 0 8px 0'}}>Only fill No./Street if the document explicitly states a street address with a number or street type keyword. Leave blank if the document only lists barangay/city.</p>
+          <h3 style={{color:'var(--navy)'}}>Article III — Principal Office</h3>
+          <p style={{fontSize:'.82rem',color:'var(--text-secondary)',margin:'0 0 10px 0'}}>Only fill No./Street if the document explicitly states a street address with a number or street type keyword. Leave blank if the document only lists barangay/city.</p>
           <div className="input-grid">
             <div className="full">
               <label className="field-label">NO. / STREET (LEAVE BLANK IF NOT EXPLICITLY IN DOCUMENT)</label>
@@ -236,7 +236,7 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
 
       {isArt('4') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article IV — Partnership Term</h3>
+          <h3 style={{color:'var(--navy)'}}>Article IV — Partnership Term</h3>
           <div className="input-grid">
             <div>
               <label className="field-label">TERM (YEARS — ENTER 0 FOR PERPETUAL)</label>
@@ -252,7 +252,7 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
 
       {isArt('5') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article V — Partners</h3>
+          <h3 style={{color:'var(--navy)'}}>Article V — Partners</h3>
           <TableEditor cols={NEW_PARTNER_COLS} rows={s.newPartners}
             onAdd={() => s.addRow(s.setNewPartners, NEW_PARTNER_COLS)}
             onRemove={i => s.removeRow(s.setNewPartners, i)}
@@ -263,7 +263,7 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
 
       {isArt('6') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article VI — Partnership Capital</h3>
+          <h3 style={{color:'var(--navy)'}}>Article VI — Partnership Capital</h3>
           <div className="input-grid">
             <div className="full"><label className="field-label">Total Capital (Words)</label><input type="text" value={s.newAmountWords} onChange={e => s.setNewAmountWords(e.target.value)} /></div>
             <div className="full">
@@ -281,7 +281,7 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
               />
             </div>
           </div>
-          <label className="field-label" style={{marginTop:14}}>New Contribution Roster</label>
+          <label className="field-label" style={{marginTop:16}}>New Contribution Roster</label>
           <TableEditor cols={NEW_CONTRIB_COLS} rows={s.newContributions}
             onAdd={() => s.addRow(s.setNewContributions, NEW_CONTRIB_COLS)}
             onRemove={i => s.removeRow(s.setNewContributions, i)}
@@ -292,15 +292,15 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
 
       {isArt('8') && (
         <div className="form-block card">
-          <h3 style={{color:'var(--gold)'}}>Article VIII — Management</h3>
+          <h3 style={{color:'var(--navy)'}}>Article VIII — Management</h3>
           <label className="field-label">New General Manager</label>
           <input type="text" value={s.newGeneralManager} onChange={e => s.setNewGeneralManager(e.target.value)} />
         </div>
       )}
 
       <div className="form-block card">
-        <h3 style={{color:'var(--gold)'}}>Document Signatories</h3>
-        <p style={{fontSize:'.78rem',color:'#8b949e',margin:'0 0 12px 0'}}>Review and edit the names and TINs of the partners who will sign the Amended Articles of Partnership.</p>
+        <h3 style={{color:'var(--navy)'}}>Document Signatories</h3>
+        <p style={{fontSize:'.82rem',color:'var(--text-secondary)',margin:'0 0 14px 0'}}>Review and edit the names and TINs of the partners who will sign the Amended Articles of Partnership.</p>
         <TableEditor cols={SIGNATORY_COLS} rows={s.newSignatories}
           onAdd={() => s.addRow(s.setNewSignatories, SIGNATORY_COLS)}
           onRemove={i => s.removeRow(s.setNewSignatories, i)}
@@ -308,8 +308,8 @@ export default function Step2AmendmentsPartnership({ s, setActiveTab, setGenerat
         />
       </div>
 
-      <div style={{marginTop:20}}>
-        <button className="btn" onClick={doGenerate}>⚖ Generate Legal Documents →</button>
+      <div style={{display:'flex', justifyContent:'flex-end', marginTop:24}}>
+        <button className="btn btn-gold" onClick={doGenerate}>⚖ Generate Legal Documents →</button>
       </div>
     </div>
   );

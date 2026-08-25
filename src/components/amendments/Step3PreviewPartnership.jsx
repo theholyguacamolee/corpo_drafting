@@ -1,6 +1,7 @@
 import React from "react";
+import { Printer } from "lucide-react";
 
-export default function Step3Preview({ generatedHTML }) {
+export default function Step3PreviewPartnership({ generatedHTML }) {
   function exportPDF() {
     if (!generatedHTML) { alert('Please generate the document first (Step 2) before exporting.'); return; }
 
@@ -20,7 +21,7 @@ ${inlineStyles}
 <style>
 *,*:before,*:after{box-sizing:border-box!important;}
 html,body{margin:0!important;padding:0!important;background:#fff!important;overflow:visible!important;}
-.document-page{width:100%!important;min-height:0!important;padding:0 4px!important;margin:0!important;box-shadow:none!important;font-family:'Times New Roman',Times,serif!important;font-size:12pt!important;line-height:1.65!important;color:#000!important;background:#fff!important;}
+.document-page{width:100%!important;min-height:0!important;padding:0 4px!important;margin:0!important;box-shadow:none!important;font-family:'Times New Roman',Times,serif!important;font-size:12pt!important;line-height:1.65!important;color:#000!important;background:#fff!important;border:none!important;}
 @page{size:8.5in 13in;margin:1in 1in;}
 p,.doc-indent,.doc-deep-indent{orphans:3;widows:3;}
 .avoid-break,table.lt,.sig-grid{page-break-inside:avoid;break-inside:avoid;}
@@ -54,17 +55,19 @@ table.lt.person-table th:nth-child(3),table.lt.person-table td:nth-child(3){widt
 
   return (
     <div>
-      <div id="export-bar" style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:18,flexWrap:'wrap',gap:10}}>
+      <div id="export-bar" style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:20,flexWrap:'wrap',gap:12}}>
         <div style={{display:'flex', alignItems:'center', gap:10}}>
           <h2 style={{margin:0}}>Document Preview</h2>
         </div>
         <div style={{display:'flex',gap:10,flexWrap:'wrap'}}>
-          <button className="btn" onClick={exportPDF}>🖨 Print / Export PDF</button>
+          <button className="btn btn-gold" onClick={exportPDF} style={{margin:0}}>
+            <Printer size={16} /> Print / Export PDF
+          </button>
         </div>
       </div>
       <div id="legal-preview">
         {!generatedHTML
-          ? <p style={{color:'#888',textAlign:'center',padding:40}}>Generate documents from Step 2 to see the preview.</p>
+          ? <p style={{color:'var(--text-muted)',textAlign:'center',padding:40}}>Generate documents from Step 2 to see the preview.</p>
           : <div id="export-content" dangerouslySetInnerHTML={{ __html: generatedHTML }} />
         }
       </div>

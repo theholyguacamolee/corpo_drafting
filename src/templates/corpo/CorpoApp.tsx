@@ -16,11 +16,9 @@ import {
   History,
   Scale,
   Building,
-  LayoutTemplate,
-  FileSignature,
-  Home
 } from 'lucide-react';
 
+import { GlobalHeader } from '@/components/GlobalHeader';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -41,9 +39,9 @@ import {
   PAGIBIG_PURPOSES,
   STLAF_REPRESENTATIVES 
 } from './constants';
-import { DocumentPreview } from './components/DocumentPreview';
-import { SearchableSelect } from './components/SearchableSelect';
-import { refinePurpose, extractSecClauses, getAIErrorMessage } from './lib/ai';
+import { DocumentPreview } from '@/components/DocumentPreview';
+import { SearchableSelect } from '@/components/SearchableSelect';
+import { refinePurpose, extractSecClauses, getAIErrorMessage } from '@/lib/ai';
 
 const paperSizeLabels: Record<string, string> = {
   legal: 'Legal (8.5" x 13")',
@@ -83,7 +81,7 @@ interface CorpoAppProps {
 }
 
 export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
-  const [step, setStep] = useState(initialDocType ? 2 : 1);
+  const [step, setStep] = useState(2);
   const [documentType, setDocumentType] = useState<'spa' | 'sec' | 'sec_dispute' | 'proposal' | 'other' | null>(initialDocType ?? null);
   
   // Proposal State
@@ -472,130 +470,28 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const currentDocTitle =
+    documentType === 'spa'
+      ? 'SPA Draft'
+      : documentType === 'sec'
+      ? 'SEC Certificate (Standard)'
+      : documentType === 'sec_dispute'
+      ? 'SEC Certificate (No Dispute)'
+      : documentType === 'proposal'
+      ? 'Incorporation Contract'
+      : 'Corporate & Legal Drafting';
+
   return (
-    <div className="min-h-screen bg-[#f0f2f5] flex flex-col font-inter print:bg-white">
-      {/* Navbar */}
-      <nav className="bg-[#123765] text-white p-4 border-b-4 border-[#ccaa49] flex justify-between items-center shadow-lg sticky top-0 z-50 no-print">
-        <div className="flex items-center gap-3">
-          <div className="bg-transparent p-1 rounded">
-            <img 
-              src="/home.png" 
-              alt="STLAF Logo" 
-              className="w-10 h-10 object-contain" 
-            />
-          </div>
-          <div>
-            <div className="font-bold text-xl tracking-wider">STLAF <span className="text-[#ccaa49]">| CORPORATE</span></div>
-            <div className="text-[10px] opacity-70 uppercase tracking-tighter">Sadsad Tamesis Legal and Accountancy Firm</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          {step !== 1 && (
-            <Button
-              variant="default"
-              onClick={() => {
-                setStep(1);
-                setDocumentType(null);
-              }}
-              className="bg-white/10 hover:bg-white/20 text-white border-none gap-2 px-4 shadow-sm backdrop-blur-sm"
-            >
-              <FileText size={18} />
-              <span className="hidden sm:inline font-bold uppercase text-[10px] tracking-widest">Other Contracts</span>
-            </Button>
-          )}
-          {onHome && (
-            <Button
-              variant="default"
-              onClick={onHome}
-              className="bg-white/10 hover:bg-white/20 text-white border-none gap-2 px-4 shadow-sm backdrop-blur-sm"
-            >
-              <Home size={18} />
-              <span className="hidden sm:inline font-bold uppercase text-[10px] tracking-widest">All Documents</span>
-            </Button>
-          )}
-        </div>
-      </nav>
+    <div className="min-h-screen bg-slate-50 flex flex-col font-inter print:bg-white">
+      {/* Global Navbar */}
+      <GlobalHeader
+        title={currentDocTitle}
+        subtitle="Corporate & Legal Drafting"
+        onHome={onHome}
+      />
 
       <main className="flex-1 flex flex-col">
         <AnimatePresence mode="wait">
-          {step === 1 && (
-            <motion.div 
-              key="landing"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="flex-1 flex flex-col items-center justify-center p-6 text-center no-print max-w-5xl mx-auto w-full"
-            >
-              <div className="w-full max-w-md mb-8">
-                <img src="/main3.png" alt="STLAF Corporate Drafting" className="w-full h-auto object-contain" />
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full px-4">
-                <button
-                  onClick={() => {
-                    clearAllForms();
-                    setDocumentType('spa');
-                    setStep(2);
-                    setActiveTab('principal');
-                  }}
-                  className="group flex flex-col items-center justify-center p-8 bg-white rounded-2xl shadow-lg border-2 border-transparent hover:border-[#ccaa49] hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="w-16 h-16 rounded-full bg-[#123765]/5 text-[#123765] flex items-center justify-center mb-6 group-hover:bg-[#123765] group-hover:text-white transition-colors">
-                    <FileSignature size={28} />
-                  </div>
-                  <h3 className="text-lg font-extrabold text-[#123765] mb-2 uppercase tracking-tight">SPA Draft</h3>
-                  <p className="text-xs text-slate-500 font-medium">Special Power of Attorney drafting tailored for STLAF matters.</p>
-                </button>
-
-                <button
-                  onClick={() => {
-                    clearAllForms();
-                    setDocumentType('sec');
-                    setStep(2);
-                  }}
-                  className="group flex flex-col items-center justify-center p-8 bg-white rounded-2xl shadow-lg border-2 border-transparent hover:border-[#ccaa49] hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="w-16 h-16 rounded-full bg-[#123765]/5 text-[#123765] flex items-center justify-center mb-6 group-hover:bg-[#123765] group-hover:text-white transition-colors">
-                    <Building size={28} />
-                  </div>
-                  <h3 className="text-lg font-extrabold text-[#123765] mb-2 uppercase tracking-tight">SEC Cert Standard</h3>
-                  <p className="text-xs text-slate-500 font-medium">Drafting tool for standard SEC Certificates and documentation.</p>
-                </button>
-
-                <button
-                  onClick={() => {
-                    clearAllForms();
-                    setDocumentType('sec_dispute');
-                    setStep(2);
-                  }}
-                  className="group flex flex-col items-center justify-center p-8 bg-white rounded-2xl shadow-lg border-2 border-transparent hover:border-[#ccaa49] hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="w-16 h-16 rounded-full bg-[#123765]/5 text-[#123765] flex items-center justify-center mb-6 group-hover:bg-[#123765] group-hover:text-white transition-colors">
-                    <Scale size={28} />
-                  </div>
-                  <h3 className="text-lg font-extrabold text-[#123765] mb-2 uppercase tracking-tight">SEC Cert (No Dispute)</h3>
-                  <p className="text-xs text-slate-500 font-medium">Form for Certification of No Intra-Corporate Dispute.</p>
-                </button>
-
-                <button
-                  onClick={() => {
-                    clearAllForms();
-                    setDetails(prev => ({ ...prev, paperSize: 'letter' }));
-                    setDocumentType('proposal');
-                    setStep(2);
-                  }}
-                  className="group flex flex-col items-center justify-center p-8 bg-white rounded-2xl shadow-lg border-2 border-transparent hover:border-[#ccaa49] hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="w-16 h-16 rounded-full bg-[#123765]/5 text-[#123765] flex items-center justify-center mb-6 group-hover:bg-[#123765] group-hover:text-white transition-colors">
-                    <FileText size={28} />
-                  </div>
-                  <h3 className="text-lg font-extrabold text-[#123765] mb-2 uppercase tracking-tight text-center">Incorporation Contract</h3>
-                  <p className="text-xs text-slate-500 font-medium">Contract Proposal for Incorporation with custom billing / options.</p>
-                </button>
-              </div>
-            </motion.div>
-          )}
-
           {step === 2 && documentType === 'spa' && (
             <motion.div 
               key="details_spa"

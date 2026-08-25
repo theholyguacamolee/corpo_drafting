@@ -9,7 +9,7 @@ export default defineConfig(({mode}) => {
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src/modules/corpo'),
+        '@': path.resolve(__dirname, './src'),
         '@app': path.resolve(__dirname, './src'),
       },
     },

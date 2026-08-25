@@ -35,7 +35,7 @@ export default function TableEditor({ cols, rows, onAdd, onRemove, onUpdate, add
         <thead>
           <tr>
             {cols.map(c => <th key={c}>{c}</th>)}
-            <th style={{width: 40}}></th>
+            <th style={{ width: 44, textAlign: 'center' }}>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -53,15 +53,15 @@ export default function TableEditor({ cols, rows, onAdd, onRemove, onUpdate, add
                   />
                 </td>
               ))}
-              <td>
-                <button className="btn btn-sm btn-danger" onClick={() => onRemove(i)}>✕</button>
+              <td style={{ textAlign: 'center' }}>
+                <button className="btn btn-sm btn-danger" onClick={() => onRemove(i)} title="Remove row">✕</button>
               </td>
             </tr>
           ))}
           {totalVal !== null && rows.length > 0 && (
-            <tr style={{background: '#0d1117', fontWeight: 'bold'}}>
+            <tr className="table-total-row">
               {cols.map((c, idx) => (
-                <td key={`total-${idx}`} style={{textAlign: idx === amountColIndex ? 'right' : 'left', padding: '8px 12px'}}>
+                <td key={`total-${idx}`} style={{ textAlign: idx === amountColIndex ? 'right' : 'left', padding: '8px 12px' }}>
                   {idx === amountColIndex - 1 ? 'TOTAL' : idx === amountColIndex ? `₱${totalVal}` : ''}
                 </td>
               ))}
@@ -71,7 +71,7 @@ export default function TableEditor({ cols, rows, onAdd, onRemove, onUpdate, add
         </tbody>
       </table>
       <div className="table-actions">
-        <button className="btn btn-sm" onClick={onAdd}>{addLabel}</button>
+        <button className="btn btn-sm btn-gold" onClick={onAdd}>{addLabel}</button>
       </div>
     </div>
   );
