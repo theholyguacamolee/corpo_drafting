@@ -8,10 +8,10 @@
 .amendment-scope {
   --bg: #f8fafc;
   --sidebar: #ffffff;
-  --gold: #ccaa49;
-  --gold-hover: #b8983d;
-  --navy: #123765;
-  --navy-dark: #0d2a4d;
+  --gold: #cb9a20;
+  --gold-hover: #b5881a;
+  --navy: #1c2e4a;
+  --navy-dark: #142236;
   --white: #ffffff;
   --text-primary: #0f172a;
   --text-secondary: #475569;
@@ -20,7 +20,7 @@
   --border-light: #f1f5f9;
   --card: #ffffff;
   --input-bg: #ffffff;
-  --accent: #123765;
+  --accent: #1c2e4a;
   --danger: #ef4444;
 }
 

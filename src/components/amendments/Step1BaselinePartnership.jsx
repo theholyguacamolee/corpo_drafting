@@ -58,7 +58,7 @@ export default function Step1BaselinePartnership({ s, setActiveTab }) {
   }
 
   function statusColor(type) {
-    return type === 'ok' ? '#16a34a' : type === 'err' ? '#dc2626' : '#ccaa49';
+    return type === 'ok' ? '#16a34a' : type === 'err' ? '#dc2626' : '#cb9a20';
   }
 
   // ── Extraction summary render ──

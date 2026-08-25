@@ -506,45 +506,45 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                   onClick={() => setActiveTab('principal')}
                   className={cn(
                     "w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all flex items-center gap-3",
-                    activeTab === 'principal' ? "bg-[#123765] text-white shadow-md" : "hover:bg-white/50 text-slate-600"
+                    activeTab === 'principal' ? "bg-[#1c2e4a] text-white shadow-md" : "hover:bg-white/50 text-slate-600"
                   )}
                 >
-                  <div className={cn("w-6 h-6 rounded-full flex items-center justify-center text-[10px]", activeTab === 'principal' ? "bg-[#ccaa49]" : "bg-slate-200")}>1</div>
+                  <div className={cn("w-6 h-6 rounded-full flex items-center justify-center text-[10px]", activeTab === 'principal' ? "bg-[#cb9a20]" : "bg-slate-200")}>1</div>
                   Principal Details
                 </button>
                 <button 
                   onClick={() => setActiveTab('representatives')}
                   className={cn(
                     "w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all flex items-center gap-3",
-                    activeTab === 'representatives' ? "bg-[#123765] text-white shadow-md" : "hover:bg-white/50 text-slate-600"
+                    activeTab === 'representatives' ? "bg-[#1c2e4a] text-white shadow-md" : "hover:bg-white/50 text-slate-600"
                   )}
                 >
-                  <div className={cn("w-6 h-6 rounded-full flex items-center justify-center text-[10px]", activeTab === 'representatives' ? "bg-[#ccaa49]" : "bg-slate-200")}>2</div>
+                  <div className={cn("w-6 h-6 rounded-full flex items-center justify-center text-[10px]", activeTab === 'representatives' ? "bg-[#cb9a20]" : "bg-slate-200")}>2</div>
                   Authorized Representatives
                 </button>
                 <button 
                   onClick={() => setActiveTab('scope')}
                   className={cn(
                     "w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all flex items-center gap-3",
-                    activeTab === 'scope' ? "bg-[#123765] text-white shadow-md" : "hover:bg-white/50 text-slate-600"
+                    activeTab === 'scope' ? "bg-[#1c2e4a] text-white shadow-md" : "hover:bg-white/50 text-slate-600"
                   )}
                 >
-                  <div className={cn("w-6 h-6 rounded-full flex items-center justify-center text-[10px]", activeTab === 'scope' ? "bg-[#ccaa49]" : "bg-slate-200")}>3</div>
+                  <div className={cn("w-6 h-6 rounded-full flex items-center justify-center text-[10px]", activeTab === 'scope' ? "bg-[#cb9a20]" : "bg-slate-200")}>3</div>
                   Scope of Authority
                 </button>
                 <button 
                   onClick={() => setStep(3)}
                   className={cn(
                     "w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all flex items-center gap-3",
-                    step === 3 ? "bg-[#123765] text-white shadow-md" : "hover:bg-white/50 text-slate-600"
+                    step === 3 ? "bg-[#1c2e4a] text-white shadow-md" : "hover:bg-white/50 text-slate-600"
                   )}
                 >
-                  <div className={cn("w-6 h-6 rounded-full flex items-center justify-center text-[10px]", step === 3 ? "bg-[#ccaa49]" : "bg-slate-200")}>4</div>
+                  <div className={cn("w-6 h-6 rounded-full flex items-center justify-center text-[10px]", step === 3 ? "bg-[#cb9a20]" : "bg-slate-200")}>4</div>
                   Review & Export
                 </button>
                 <div className="pt-8">
                   <Button 
-                    className="w-full bg-[#ccaa49] hover:bg-[#b8983d] text-white gap-2"
+                    className="w-full bg-[#cb9a20] hover:bg-[#b8983d] text-white gap-2"
                     onClick={() => setStep(3)}
                   >
                     Preview Document <ChevronRight size={18} />
@@ -557,10 +557,10 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                   <div className="flex justify-between items-center">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <div className="w-2 h-2 rounded-full bg-[#ccaa49] animate-pulse"></div>
-                        <span className="text-[10px] font-bold uppercase text-[#ccaa49] tracking-widest">Active Drafting Session</span>
+                        <div className="w-2 h-2 rounded-full bg-[#cb9a20] animate-pulse"></div>
+                        <span className="text-[10px] font-bold uppercase text-[#cb9a20] tracking-widest">Active Drafting Session</span>
                       </div>
-                      <CardTitle className="text-[#123765] text-2xl uppercase tracking-tight font-extrabold">
+                      <CardTitle className="text-[#1c2e4a] text-2xl uppercase tracking-tight font-extrabold">
                         {activeTab === 'principal' && "Principal Information"}
                         {activeTab === 'representatives' && "Authorized Representatives"}
                         {activeTab === 'scope' && "Scope of Authority"}
@@ -578,7 +578,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                       <fieldset>
                         <div className="space-y-2">
-                          <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Document Paper Format</Label>
+                          <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Document Paper Format</Label>
                           <Select 
                             value={details.paperSize} 
                             onValueChange={(v: any) => setDetails(prev => ({ ...prev, paperSize: v }))}
@@ -596,7 +596,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                           </Select>
                         </div>
                         <div className="space-y-2">
-                          <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Full Name of Principal (Affiant)</Label>
+                          <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Full Name of Principal (Affiant)</Label>
                           <Input 
                             className="h-12 border-slate-200"
                             placeholder="e.g., JUAN P. DELA CRUZ" 
@@ -605,7 +605,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Nationality</Label>
+                          <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Nationality</Label>
                           <Input 
                             className="h-12 border-slate-200"
                             value={details.nationality}
@@ -613,7 +613,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Civil Status</Label>
+                          <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Civil Status</Label>
                           <Select 
                             value={details.civilStatus} 
                             onValueChange={v => setDetails(prev => ({ ...prev, civilStatus: v }))}
@@ -632,7 +632,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                           </Select>
                         </div>
                         <div className="space-y-2 md:col-span-2">
-                          <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Complete Residence Address</Label>
+                          <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Complete Residence Address</Label>
                           <Input 
                             className="h-12 border-slate-200"
                             placeholder="Unit, Building, Street, Brgy, City, Province" 
@@ -641,7 +641,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Competent Evidence of Identity</Label>
+                          <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Competent Evidence of Identity</Label>
                           <Input 
                             className="h-12 border-slate-200"
                             placeholder="e.g., Philippine Passport" 
@@ -650,7 +650,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Identification Number</Label>
+                          <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Identification Number</Label>
                           <Input 
                             className="h-12 border-slate-200"
                             placeholder="e.g., P1234567A" 
@@ -660,7 +660,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                         </div>
                       </fieldset>
                       <div className="flex justify-end pt-4">
-                        <Button onClick={() => setActiveTab('representatives')} className="bg-[#123765] hover:bg-[#0d2a4d] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group">
+                        <Button onClick={() => setActiveTab('representatives')} className="bg-[#1c2e4a] hover:bg-[#142236] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group">
                           Next: Representatives <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                         </Button>
                       </div>
@@ -671,7 +671,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                       <fieldset>
                         <div className="space-y-2">
-                          <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Authorized Representative Selection</Label>
+                          <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Authorized Representative Selection</Label>
                           <Select 
                             value={repType === 'stlaf' ? STLAF_REPRESENTATIVES : 'manual'} 
                             onValueChange={(v: string) => {
@@ -698,7 +698,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                         </div>
 
                         <div className="space-y-2">
-                          <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Representative Details</Label>
+                          <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Representative Details</Label>
                           <Textarea 
                             className={cn(
                               "min-h-[150px] border-slate-200 leading-relaxed transition-all",
@@ -718,10 +718,10 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                         </div>
                       </fieldset>
                       <div className="flex justify-between items-center pt-4">
-                        <Button variant="ghost" onClick={() => setActiveTab('principal')} className="text-slate-600 hover:text-[#123765] h-10 px-4">
+                        <Button variant="ghost" onClick={() => setActiveTab('principal')} className="text-slate-600 hover:text-[#1c2e4a] h-10 px-4">
                           <ChevronLeft size={18} className="mr-2" /> Back to Principal
                         </Button>
-                        <Button onClick={() => setActiveTab('scope')} className="bg-[#123765] hover:bg-[#0d2a4d] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group">
+                        <Button onClick={() => setActiveTab('scope')} className="bg-[#1c2e4a] hover:bg-[#142236] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group">
                           Next: Scope of Authority <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                         </Button>
                       </div>
@@ -732,14 +732,14 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-48">
                       <fieldset>
                         <div className="flex justify-between items-center">
-                          <h3 className="text-[#123765] font-bold uppercase tracking-widest text-[10px]">Authorization Items</h3>
+                          <h3 className="text-[#1c2e4a] font-bold uppercase tracking-widest text-[10px]">Authorization Items</h3>
                         </div>
 
                         <div className="space-y-6">
                           {details.purposes.map((purpose, index) => (
                             <Card key={purpose.id} className="border-none bg-slate-50/50 shadow-sm overflow-visible text-left">
-                              <div className="bg-[#123765]/5 px-6 py-2 border-b border-slate-100 flex justify-between items-center">
-                                <span className="text-[10px] font-bold text-[#123765] uppercase tracking-widest">Authority Item #{index + 1}</span>
+                              <div className="bg-[#1c2e4a]/5 px-6 py-2 border-b border-slate-100 flex justify-between items-center">
+                                <span className="text-[10px] font-bold text-[#1c2e4a] uppercase tracking-widest">Authority Item #{index + 1}</span>
                                 {details.purposes.length > 1 && (
                                   <Button 
                                     variant="ghost" 
@@ -833,7 +833,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                                       <Button 
                                         variant="secondary" 
                                         size="sm" 
-                                        className="bg-[#fff9e6] text-[#b8983d] hover:bg-[#ccaa49] hover:text-white border border-[#ccaa49] rounded-full px-4 h-8 text-[10px] font-bold uppercase tracking-wider transition-all"
+                                        className="bg-[#fff9e6] text-[#b8983d] hover:bg-[#cb9a20] hover:text-white border border-[#cb9a20] rounded-full px-4 h-8 text-[10px] font-bold uppercase tracking-wider transition-all"
                                         onClick={() => {
                                           setIsRefining(purpose.id);
                                           handleRefine(purpose);
@@ -859,20 +859,20 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                             <Button 
                               onClick={addPurpose} 
                               variant="outline" 
-                              className="w-full py-8 border-2 border-dashed border-[#ccaa49]/30 text-[#ccaa49] hover:bg-[#ccaa49]/5 hover:border-[#ccaa49] transition-all font-bold uppercase text-xs tracking-widest gap-2 bg-white/50"
+                              className="w-full py-8 border-2 border-dashed border-[#cb9a20]/30 text-[#cb9a20] hover:bg-[#cb9a20]/5 hover:border-[#cb9a20] transition-all font-bold uppercase text-xs tracking-widest gap-2 bg-white/50"
                             >
-                              <Plus size={20} className="text-[#ccaa49]" />
+                              <Plus size={20} className="text-[#cb9a20]" />
                               Add Another Authorization Clause
                             </Button>
                           </div>
                         </div>
                       </fieldset>
                       <div className="flex justify-between items-center pt-4">
-                        <Button variant="ghost" onClick={() => setActiveTab('representatives')} className="text-slate-600 hover:text-[#123765] h-10 px-4">
+                        <Button variant="ghost" onClick={() => setActiveTab('representatives')} className="text-slate-600 hover:text-[#1c2e4a] h-10 px-4">
                           <ChevronLeft size={18} className="mr-2" /> Back to Representatives
                         </Button>
                         <Button 
-                          className="bg-[#123765] hover:bg-[#0d2a4d] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group"
+                          className="bg-[#1c2e4a] hover:bg-[#142236] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group"
                           onClick={() => setStep(3)}
                         >
                           Finalize Document & Review <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -896,12 +896,12 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
               <Card className="border-none shadow-xl overflow-visible max-w-3xl mx-auto w-full">
                 <CardHeader className="bg-white border-b border-muted p-8">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-full bg-[#123765]/5 text-[#123765] flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-[#1c2e4a]/5 text-[#1c2e4a] flex items-center justify-center">
                       <Building size={32} />
                     </div>
                     <div>
-                      <CardTitle className="text-[#123765] text-2xl uppercase tracking-tight font-extrabold flex items-center gap-2">
-                        Secretary's Certificate Drafting <Sparkles className="text-[#ccaa49]" size={20} />
+                      <CardTitle className="text-[#1c2e4a] text-2xl uppercase tracking-tight font-extrabold flex items-center gap-2">
+                        Secretary's Certificate Drafting <Sparkles className="text-[#cb9a20]" size={20} />
                       </CardTitle>
                       <CardDescription className="text-slate-500 italic text-sm">
                         Professional drafting of Board Resolutions and Secretary's Certificates with AI-powered clause extraction.
@@ -913,7 +913,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                   <fieldset>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 border-b border-slate-100">
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Signatory Name</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Signatory Name</Label>
                       <Select 
                         value={secSignatoryType} 
                         onValueChange={(val) => {
@@ -937,7 +937,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                           }
                         }}
                       >
-                        <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all">
+                        <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all">
                           <SelectValue placeholder="Select Signatory" />
                         </SelectTrigger>
                         <SelectContent>
@@ -950,7 +950,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                     {secSignatoryType === 'Others (Manual Input)' ? (
                       <div className="space-y-2">
-                        <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Enter Signatory Name</Label>
+                        <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Enter Signatory Name</Label>
                         <Input 
                           placeholder="e.g. Juan Dela Cruz" 
                           className="h-12 border-slate-200"
@@ -964,10 +964,10 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                     {secSignatoryType === 'Others (Manual Input)' || !secSignatoryType || isManualCorp ? (
                       <div className="space-y-2 md:col-span-2">
-                        <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Corporate Name</Label>
+                        <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Corporate Name</Label>
                         <Input 
                           placeholder="Enter Corporate Name" 
-                          className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                          className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                           value={secCorpName}
                           onChange={(e) => setSecCorpName(e.target.value)}
                         />
@@ -986,7 +986,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                       </div>
                     ) : (
                       <div className="space-y-2 md:col-span-2">
-                        <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Select Corporate Name</Label>
+                        <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Select Corporate Name</Label>
                         <Select 
                           value={secCorpName} 
                           onValueChange={(val) => {
@@ -1003,7 +1003,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                             }
                           }}
                         >
-                          <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all">
+                          <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all">
                             <SelectValue placeholder="Select Corporation" />
                           </SelectTrigger>
                           <SelectContent>
@@ -1019,11 +1019,11 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     )}
 
                     <div className="space-y-2 md:col-span-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Principal Office Address OF CORPORATION</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Principal Office Address OF CORPORATION</Label>
                       <Textarea 
                         placeholder="Complete principal office address of the corporation"
                         className={cn(
-                          "min-h-[80px] border-slate-200 leading-relaxed focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all",
+                          "min-h-[80px] border-slate-200 leading-relaxed focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all",
                           (!isManualCorp && secSignatoryType !== '' && secSignatoryType !== 'Others (Manual Input)' && secCorpName !== '') ? "bg-slate-50 text-slate-500" : "bg-white"
                         )}
                         value={secCorpAddress}
@@ -1033,12 +1033,12 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Signatory Capacity</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Signatory Capacity</Label>
                       <Select 
                         value={secSignatoryCapacity} 
                         onValueChange={setSecSignatoryCapacity}
                       >
-                        <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all">
+                        <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all">
                           <SelectValue placeholder="Select Capacity" />
                         </SelectTrigger>
                         <SelectContent>
@@ -1049,22 +1049,22 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Signatory Office Address</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Signatory Office Address</Label>
                       <Input 
                         placeholder="Enter Signatory's Office Address" 
-                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                         value={secSignatoryAddress}
                         onChange={(e) => setSecSignatoryAddress(e.target.value)}
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Type of Meeting</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Type of Meeting</Label>
                       <Select 
                         value={secMeetingType} 
                         onValueChange={setSecMeetingType}
                       >
-                        <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all">
+                        <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all">
                           <SelectValue placeholder="Select Meeting Type" />
                         </SelectTrigger>
                         <SelectContent>
@@ -1076,7 +1076,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Meeting Date</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Meeting Date</Label>
                       <Input 
                         type="date"
                         className="h-12 border-slate-200"
@@ -1086,20 +1086,20 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Valid ID</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Valid ID</Label>
                       <Input 
                         placeholder="e.g., Philippine Passport" 
-                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                         value={secIdType}
                         onChange={(e) => setSecIdType(e.target.value)}
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">ID Number</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">ID Number</Label>
                       <Input 
                         placeholder="e.g., P1234567A" 
-                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                         value={secIdNumber}
                         onChange={(e) => setSecIdNumber(e.target.value)}
                       />
@@ -1108,12 +1108,12 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">
                         Agenda Headline
                       </Label>
                       <Input 
                         placeholder="e.g. Election of Officers, Re-routing of bank accounts..." 
-                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                         value={secHeadline}
                         onChange={(e) => setSecHeadline(e.target.value)}
                         onKeyDown={(e) => {
@@ -1128,7 +1128,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">
                         Upload Minutes Document
                       </Label>
                       <div className="flex items-center gap-4">
@@ -1144,14 +1144,14 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                           className="h-12 border-dashed border-2 border-slate-300 w-full hover:bg-slate-50 gap-2 justify-start px-4 text-slate-600"
                           onClick={() => document.getElementById('minutes-upload')?.click()}
                         >
-                          <FileText size={18} className="text-[#ccaa49]" />
+                          <FileText size={18} className="text-[#cb9a20]" />
                           {secFileName || "Select PDF or Image..."}
                         </Button>
                       </div>
                     </div>
 
                     <Button 
-                      className="w-full bg-[#123765] hover:bg-[#0d2a4d] text-white py-6 shadow-md transition-all uppercase tracking-widest text-xs font-bold gap-2"
+                      className="w-full bg-[#1c2e4a] hover:bg-[#142236] text-white py-6 shadow-md transition-all uppercase tracking-widest text-xs font-bold gap-2"
                       onClick={handleExtractSec}
                       disabled={isExtracting || !secHeadline || !secFileBase64}
                     >
@@ -1170,7 +1170,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                   {extractedClauses.length > 0 && (
                     <div className="pt-8 border-t border-slate-100 space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                      <h3 className="text-[#123765] font-bold uppercase text-[14px] tracking-tight">Resolution Clauses</h3>
+                      <h3 className="text-[#1c2e4a] font-bold uppercase text-[14px] tracking-tight">Resolution Clauses</h3>
                       
                       <div className="space-y-4">
                         {extractedClauses?.map((clause, idx) => (
@@ -1180,7 +1180,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.1 }}
                           >
-                            <Card className="relative overflow-hidden border-slate-200 border-l-4 border-l-[#ccaa49] bg-white shadow-sm ring-1 ring-slate-200/50">
+                            <Card className="relative overflow-hidden border-slate-200 border-l-4 border-l-[#cb9a20] bg-white shadow-sm ring-1 ring-slate-200/50">
                               <CardContent className="p-6 pb-4 space-y-4">
                                 <div className="absolute top-2 right-2">
                                   <Button 
@@ -1195,12 +1195,12 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                                 <div className="space-y-4">
                                   <div className="space-y-2">
-                                    <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Clause Type</Label>
+                                    <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Clause Type</Label>
                                     <Select 
                                       value={clause.type} 
                                       onValueChange={(val) => updateSecClause(clause.id, 'type', val)}
                                     >
-                                      <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all">
+                                      <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all">
                                         <SelectValue />
                                       </SelectTrigger>
                                       <SelectContent>
@@ -1212,10 +1212,10 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                                   </div>
 
                                   <div className="space-y-2">
-                                    <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Resolved Clause Text</Label>
+                                    <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Resolved Clause Text</Label>
                                     <Textarea 
                                       placeholder="That the Board of Directors approved..." 
-                                      className="min-h-[120px] border-slate-200 leading-relaxed focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                                      className="min-h-[120px] border-slate-200 leading-relaxed focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                                       value={clause.text}
                                       onChange={(e) => updateSecClause(clause.id, 'text', e.target.value)}
                                     />
@@ -1224,7 +1224,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                                   {Array.isArray(clause.tableData) && clause.tableData.length > 0 && Array.isArray(clause.tableData[0]) && clause.tableData[0][0] !== "null" && (
                                     <div className="space-y-2 pt-2">
                                       <div className="flex justify-between items-center mb-2">
-                                        <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Resolution Table Data</Label>
+                                        <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Resolution Table Data</Label>
                                         <div className="flex gap-2">
                                           <Button 
                                             variant="outline" 
@@ -1262,7 +1262,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                                                     <Input 
                                                       value={cell}
                                                       onChange={(e) => updateSecTableData(clause.id, rIdx, cIdx, e.target.value)}
-                                                      className="border-none shadow-none focus-visible:ring-1 focus-visible:ring-[#123765]/30 h-8 text-sm bg-transparent px-2"
+                                                      className="border-none shadow-none focus-visible:ring-1 focus-visible:ring-[#1c2e4a]/30 h-8 text-sm bg-transparent px-2"
                                                     />
                                                   </td>
                                                 ))}
@@ -1278,7 +1278,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                                     <Button 
                                       variant="outline" 
                                       size="sm" 
-                                      className="w-full border-dashed border-slate-300 text-slate-400 hover:text-[#123765] hover:border-[#123765]/30 h-10"
+                                      className="w-full border-dashed border-slate-300 text-slate-400 hover:text-[#1c2e4a] hover:border-[#1c2e4a]/30 h-10"
                                       onClick={() => updateSecClause(clause.id, 'tableData', [['Header 1', 'Header 2'], ['', '']])}
                                     >
                                       <Plus size={14} className="mr-2" /> Detected colon. Add resolution table?
@@ -1290,14 +1290,14 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                                       <Button
                                         variant="outline"
                                         size="sm"
-                                        className="h-8 rounded-full border-[#123765]/10 text-[#123765] hover:bg-[#123765]/5 transition-all text-[11px] font-medium gap-2 px-3 bg-slate-50/50"
+                                        className="h-8 rounded-full border-[#1c2e4a]/10 text-[#1c2e4a] hover:bg-[#1c2e4a]/5 transition-all text-[11px] font-medium gap-2 px-3 bg-slate-50/50"
                                         onClick={() => handleRefineSecClause(clause)}
                                         disabled={isRefiningSec === clause.id || !clause.text}
                                       >
                                         {isRefiningSec === clause.id ? (
-                                          <div className="h-3 w-3 border-2 border-[#123765] border-t-transparent rounded-full animate-spin" />
+                                          <div className="h-3 w-3 border-2 border-[#1c2e4a] border-t-transparent rounded-full animate-spin" />
                                         ) : (
-                                          <Sparkles size={14} className="text-[#ccaa49]" />
+                                          <Sparkles size={14} className="text-[#cb9a20]" />
                                         )}
                                         {isRefiningSec === clause.id ? 'Refining...' : 'AI Refiner'}
                                       </Button>
@@ -1306,7 +1306,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                                         <Button
                                           variant="ghost"
                                           size="sm"
-                                          className="h-8 text-[11px] text-slate-400 hover:text-[#123765] px-2 shadow-none"
+                                          className="h-8 text-[11px] text-slate-400 hover:text-[#1c2e4a] px-2 shadow-none"
                                           onClick={() => updateSecClause(clause.id, 'tableData', [['Header 1', 'Header 2'], ['', '']])}
                                         >
                                           <Plus size={14} className="mr-1" /> Add Table
@@ -1318,7 +1318,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                                       <Button 
                                         variant="outline"
                                         size="sm"
-                                        className="h-9 border-[#123765] text-[#123765] hover:bg-[#123765]/5 font-bold uppercase text-[10px] tracking-widest gap-2"
+                                        className="h-9 border-[#1c2e4a] text-[#1c2e4a] hover:bg-[#1c2e4a]/5 font-bold uppercase text-[10px] tracking-widest gap-2"
                                         onClick={addSecClause}
                                       >
                                         <Plus size={14} /> Add Clause
@@ -1342,12 +1342,12 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                         setStep(1);
                         setDocumentType(null);
                       }} 
-                      className="text-slate-600 hover:text-[#123765] h-10 px-4"
+                      className="text-slate-600 hover:text-[#1c2e4a] h-10 px-4"
                     >
                       <ChevronLeft size={18} className="mr-2" /> Back to Document Selection
                     </Button>
                     <Button 
-                      className="bg-[#123765] hover:bg-[#0d2a4d] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group"
+                      className="bg-[#1c2e4a] hover:bg-[#142236] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group"
                       onClick={() => setStep(3)}
                     >
                       Finalize Document & Review <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -1369,12 +1369,12 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
               <Card className="border-none shadow-xl overflow-visible max-w-3xl mx-auto w-full">
                 <CardHeader className="bg-white border-b border-muted p-8">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-full bg-[#123765]/5 text-[#123765] flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-[#1c2e4a]/5 text-[#1c2e4a] flex items-center justify-center">
                       <Scale size={32} />
                     </div>
                     <div>
-                      <CardTitle className="text-[#123765] text-2xl uppercase tracking-tight font-extrabold flex items-center gap-2">
-                        No Intra-Corporate Dispute Drafting <Sparkles className="text-[#ccaa49]" size={20} />
+                      <CardTitle className="text-[#1c2e4a] text-2xl uppercase tracking-tight font-extrabold flex items-center gap-2">
+                        No Intra-Corporate Dispute Drafting <Sparkles className="text-[#cb9a20]" size={20} />
                       </CardTitle>
                       <CardDescription className="text-slate-500 italic text-sm">
                         Professional drafting of Certification of No Intra-Corporate Dispute.
@@ -1386,7 +1386,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                   <fieldset>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 border-b border-slate-100">
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Signatory Name</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Signatory Name</Label>
                       <Select 
                         value={secSignatoryType} 
                         onValueChange={(val) => {
@@ -1410,7 +1410,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                           }
                         }}
                       >
-                        <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all">
+                        <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all">
                           <SelectValue placeholder="Select Signatory" />
                         </SelectTrigger>
                         <SelectContent>
@@ -1423,7 +1423,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                     {secSignatoryType === 'Others (Manual Input)' ? (
                       <div className="space-y-2">
-                        <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Enter Signatory Name</Label>
+                        <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Enter Signatory Name</Label>
                         <Input 
                           placeholder="e.g. Juan Dela Cruz" 
                           className="h-12 border-slate-200"
@@ -1437,10 +1437,10 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                     {secSignatoryType === 'Others (Manual Input)' || !secSignatoryType || isManualCorp ? (
                       <div className="space-y-2 md:col-span-2">
-                        <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Corporate Name</Label>
+                        <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Corporate Name</Label>
                         <Input 
                           placeholder="Enter Corporate Name" 
-                          className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                          className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                           value={secCorpName}
                           onChange={(e) => setSecCorpName(e.target.value)}
                         />
@@ -1459,7 +1459,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                       </div>
                     ) : (
                       <div className="space-y-2 md:col-span-2">
-                        <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Select Corporate Name</Label>
+                        <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Select Corporate Name</Label>
                         <Select 
                           value={secCorpName} 
                           onValueChange={(val) => {
@@ -1476,7 +1476,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                             }
                           }}
                         >
-                          <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all">
+                          <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all">
                             <SelectValue placeholder="Select Corporation" />
                           </SelectTrigger>
                           <SelectContent>
@@ -1492,11 +1492,11 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     )}
 
                     <div className="space-y-2 md:col-span-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Principal Office Address OF CORPORATION</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Principal Office Address OF CORPORATION</Label>
                       <Textarea 
                         placeholder="Complete principal office address of the corporation"
                         className={cn(
-                          "min-h-[80px] border-slate-200 leading-relaxed focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all",
+                          "min-h-[80px] border-slate-200 leading-relaxed focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all",
                           (!isManualCorp && secSignatoryType !== '' && secSignatoryType !== 'Others (Manual Input)' && secCorpName !== '') ? "bg-slate-50 text-slate-500" : "bg-white"
                         )}
                         value={secCorpAddress}
@@ -1506,12 +1506,12 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Signatory Capacity</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Signatory Capacity</Label>
                       <Select 
                         value={secSignatoryCapacity} 
                         onValueChange={setSecSignatoryCapacity}
                       >
-                        <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all">
+                        <SelectTrigger className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all">
                           <SelectValue placeholder="Select Capacity" />
                         </SelectTrigger>
                         <SelectContent>
@@ -1522,17 +1522,17 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Signatory Office Address</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Signatory Office Address</Label>
                       <Input 
                         placeholder="Enter Signatory's Office Address" 
-                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                         value={secSignatoryAddress}
                         onChange={(e) => setSecSignatoryAddress(e.target.value)}
                       />
                     </div>
 
                     <div className="space-y-2 md:col-span-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Meeting Date</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Meeting Date</Label>
                       <Input 
                         type="date"
                         className="h-12 border-slate-200"
@@ -1542,20 +1542,20 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Valid ID</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Valid ID</Label>
                       <Input 
                         placeholder="e.g., Philippine Passport" 
-                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                         value={secIdType}
                         onChange={(e) => setSecIdType(e.target.value)}
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">ID Number</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">ID Number</Label>
                       <Input 
                         placeholder="e.g., P1234567A" 
-                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                         value={secIdNumber}
                         onChange={(e) => setSecIdNumber(e.target.value)}
                       />
@@ -1570,12 +1570,12 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                         setStep(1);
                         setDocumentType(null);
                       }} 
-                      className="text-slate-600 hover:text-[#123765] h-10 px-4"
+                      className="text-slate-600 hover:text-[#1c2e4a] h-10 px-4"
                     >
                       <ChevronLeft size={18} className="mr-2" /> Back to Document Selection
                     </Button>
                     <Button 
-                      className="bg-[#123765] hover:bg-[#0d2a4d] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group"
+                      className="bg-[#1c2e4a] hover:bg-[#142236] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group"
                       onClick={() => setStep(3)}
                     >
                       Finalize Document & Review <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -1597,11 +1597,11 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
               <Card className="border-none shadow-xl overflow-visible max-w-3xl mx-auto w-full">
                 <CardHeader className="bg-white border-b border-muted p-8">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-full bg-[#123765]/5 text-[#123765] flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-[#1c2e4a]/5 text-[#1c2e4a] flex items-center justify-center">
                       <FileText size={32} />
                     </div>
                     <div>
-                      <CardTitle className="text-[#123765] text-2xl uppercase tracking-tight font-extrabold flex items-center gap-2">
+                      <CardTitle className="text-[#1c2e4a] text-2xl uppercase tracking-tight font-extrabold flex items-center gap-2">
                         Proposal for Incorporation
                       </CardTitle>
                       <CardDescription className="text-slate-500 italic text-sm">
@@ -1614,7 +1614,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 border-b border-slate-100 font-inter">
                     {/* Client Salutation & Client Name */}
                     <div className="space-y-2 col-span-1">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Salutation / Honorific</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Salutation / Honorific</Label>
                       <Select 
                         value={proposalDetails.salutation || 'Mr.'} 
                         onValueChange={(v) => setProposalDetails(prev => ({ ...prev, salutation: v }))}
@@ -1635,10 +1635,10 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                     </div>
 
                     <div className="space-y-2 col-span-1">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Client Name</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Client Name</Label>
                       <Input 
                         placeholder="e.g. AW WAI KHEONG" 
-                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all font-semibold"
+                        className="h-12 border-slate-200 focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all font-semibold"
                         value={proposalDetails.clientName}
                         onChange={(e) => setProposalDetails(prev => ({ ...prev, clientName: e.target.value.toUpperCase() }))}
                       />
@@ -1646,10 +1646,10 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                     {/* Client Address */}
                     <div className="space-y-2 md:col-span-2">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Client Address</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Client Address</Label>
                       <Textarea 
                         placeholder="e.g. 2162-2188 Unit C., Brgy. 25, Zone 4, F.B. Harrison St., Pasay City" 
-                        className="min-h-[80px] border-slate-200 leading-relaxed focus:ring-2 focus:ring-[#123765]/20 focus:border-[#123765] transition-all"
+                        className="min-h-[80px] border-slate-200 leading-relaxed focus:ring-2 focus:ring-[#1c2e4a]/20 focus:border-[#1c2e4a] transition-all"
                         value={proposalDetails.clientAddress}
                         onChange={(e) => setProposalDetails(prev => ({ ...prev, clientAddress: e.target.value }))}
                       />
@@ -1657,7 +1657,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                     {/* Date */}
                     <div className="space-y-2 font-inter">
-                      <Label className="text-[#123765] font-bold uppercase text-[10px] tracking-widest">Proposal Date</Label>
+                      <Label className="text-[#1c2e4a] font-bold uppercase text-[10px] tracking-widest">Proposal Date</Label>
                       <Input 
                         type="date"
                         className="h-12 border-slate-200"
@@ -1668,22 +1668,22 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                     {/* Fees Customization */}
                     <div className="space-y-4 md:col-span-2 pt-4">
-                      <Label className="text-[#123765] font-extrabold uppercase text-[11px] tracking-widest block font-sans">Phase Milestones & Fees</Label>
+                      <Label className="text-[#1c2e4a] font-extrabold uppercase text-[11px] tracking-widest block font-sans">Phase Milestones & Fees</Label>
                       
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-inter">
                         {/* Phase 1 */}
                         <div className="space-y-3 p-4 bg-slate-50/50 border rounded-lg">
                           <div className="flex justify-between items-center">
-                            <div className="font-bold text-xs uppercase text-[#123765]">Phase 1 (SEC)</div>
+                            <div className="font-bold text-xs uppercase text-[#1c2e4a]">Phase 1 (SEC)</div>
                             <div className="flex items-center space-x-1.5">
                               <input 
                                 type="checkbox" 
                                 id="includePhase1"
-                                className="h-4 w-4 rounded border-slate-300 text-[#123765] focus:ring-[#123765]"
+                                className="h-4 w-4 rounded border-slate-300 text-[#1c2e4a] focus:ring-[#1c2e4a]"
                                 checked={proposalDetails.includePhase1}
                                 onChange={(e) => setProposalDetails(prev => ({ ...prev, includePhase1: e.target.checked }))}
                               />
-                              <Label htmlFor="includePhase1" className="text-[10px] font-bold text-[#123765] uppercase cursor-pointer">Include</Label>
+                              <Label htmlFor="includePhase1" className="text-[10px] font-bold text-[#1c2e4a] uppercase cursor-pointer">Include</Label>
                             </div>
                           </div>
                           <div className="flex items-center space-x-2">
@@ -1716,16 +1716,16 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                         {/* Phase 2 */}
                         <div className="space-y-3 p-4 bg-slate-50/50 border rounded-lg">
                           <div className="flex justify-between items-center">
-                            <div className="font-bold text-xs uppercase text-[#123765]">Phase 2 (BIR)</div>
+                            <div className="font-bold text-xs uppercase text-[#1c2e4a]">Phase 2 (BIR)</div>
                             <div className="flex items-center space-x-1.5">
                               <input 
                                 type="checkbox" 
                                 id="includePhase2"
-                                className="h-4 w-4 rounded border-slate-300 text-[#123765] focus:ring-[#123765]"
+                                className="h-4 w-4 rounded border-slate-300 text-[#1c2e4a] focus:ring-[#1c2e4a]"
                                 checked={proposalDetails.includePhase2}
                                 onChange={(e) => setProposalDetails(prev => ({ ...prev, includePhase2: e.target.checked }))}
                               />
-                              <Label htmlFor="includePhase2" className="text-[10px] font-bold text-[#123765] uppercase cursor-pointer">Include</Label>
+                              <Label htmlFor="includePhase2" className="text-[10px] font-bold text-[#1c2e4a] uppercase cursor-pointer">Include</Label>
                             </div>
                           </div>
                           <div className="flex items-center space-x-2">
@@ -1758,16 +1758,16 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                         {/* Phase 3 */}
                         <div className="space-y-3 p-4 bg-slate-50/50 border rounded-lg">
                           <div className="flex justify-between items-center">
-                            <div className="font-bold text-xs uppercase text-[#123765]">Phase 3 (LGU)</div>
+                            <div className="font-bold text-xs uppercase text-[#1c2e4a]">Phase 3 (LGU)</div>
                             <div className="flex items-center space-x-1.5">
                               <input 
                                 type="checkbox" 
                                 id="includePhase3"
-                                className="h-4 w-4 rounded border-slate-300 text-[#123765] focus:ring-[#123765]"
+                                className="h-4 w-4 rounded border-slate-300 text-[#1c2e4a] focus:ring-[#1c2e4a]"
                                 checked={proposalDetails.includePhase3}
                                 onChange={(e) => setProposalDetails(prev => ({ ...prev, includePhase3: e.target.checked }))}
                               />
-                              <Label htmlFor="includePhase3" className="text-[10px] font-bold text-[#123765] uppercase cursor-pointer">Include</Label>
+                              <Label htmlFor="includePhase3" className="text-[10px] font-bold text-[#1c2e4a] uppercase cursor-pointer">Include</Label>
                             </div>
                           </div>
                           <div className="flex items-center space-x-2">
@@ -1801,7 +1801,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
 
                     {/* Government & Messengerial Fees Customization */}
                     <div className="space-y-4 md:col-span-2 pt-4">
-                      <Label className="text-[#123765] font-extrabold uppercase text-[11px] tracking-widest block font-sans">Government & Messengerial Fees</Label>
+                      <Label className="text-[#1c2e4a] font-extrabold uppercase text-[11px] tracking-widest block font-sans">Government & Messengerial Fees</Label>
                       
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-inter">
                         {/* Gov Reg Fee */}
@@ -1848,12 +1848,12 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                         <input 
                           type="checkbox" 
                           id="isDiscountEligible"
-                          className="h-5 w-5 rounded border-amber-300 text-[#ccaa49] focus:ring-[#ccaa49]"
+                          className="h-5 w-5 rounded border-amber-300 text-[#cb9a20] focus:ring-[#cb9a20]"
                           checked={proposalDetails.isDiscountEligible}
                           onChange={(e) => setProposalDetails(prev => ({ ...prev, isDiscountEligible: e.target.checked }))}
                         />
                         <div className="space-y-0.5">
-                          <Label htmlFor="isDiscountEligible" className="text-sm font-extrabold text-[#123765]" style={{ cursor: "pointer" }}>Eligible for Discount</Label>
+                          <Label htmlFor="isDiscountEligible" className="text-sm font-extrabold text-[#1c2e4a]" style={{ cursor: "pointer" }}>Eligible for Discount</Label>
                           <p className="text-[10px] text-amber-600 font-medium">Apply a percentage discount on Phase 1, Phase 2, and Phase 3 fees</p>
                         </div>
                       </div>
@@ -1861,7 +1861,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                       {proposalDetails.isDiscountEligible && (
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-amber-100 mt-4 font-inter">
                           <div className="space-y-2">
-                            <Label className="text-[11px] font-bold text-[#123765] uppercase tracking-wider">Discount Percentage (%)</Label>
+                            <Label className="text-[11px] font-bold text-[#1c2e4a] uppercase tracking-wider">Discount Percentage (%)</Label>
                             <Input 
                               type="number"
                               className="h-10 border-amber-200 bg-white"
@@ -1873,7 +1873,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                           </div>
                           
                           <div className="bg-white p-3 rounded border border-amber-100 space-y-1 text-xs">
-                            <div className="font-bold text-[#123765] mb-1">Live Calculations:</div>
+                            <div className="font-bold text-[#1c2e4a] mb-1">Live Calculations:</div>
                             <div className="flex justify-between">
                               <span>Phase 1 (SEC):</span>
                               <span className="font-mono font-semibold">
@@ -1926,12 +1926,12 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                         setStep(1);
                         setDocumentType(null);
                       }} 
-                      className="text-slate-600 hover:text-[#123765] h-10 px-4"
+                      className="text-slate-600 hover:text-[#1c2e4a] h-10 px-4"
                     >
                       <ChevronLeft size={18} className="mr-2" /> Back to Document Selection
                     </Button>
                     <Button 
-                      className="bg-[#123765] hover:bg-[#0d2a4d] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group"
+                      className="bg-[#1c2e4a] hover:bg-[#142236] text-white px-8 py-5 text-md shadow-md rounded-lg transition-all group"
                       onClick={() => setStep(3)}
                     >
                       Finalize Document & Review <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -1958,7 +1958,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                   </Button>
                   <div className="h-8 w-[1px] bg-slate-200 hidden sm:block"></div>
                   <div className="hidden md:flex flex-col">
-                    <span className="text-[10px] font-bold uppercase text-[#123765] tracking-widest">Document Status</span>
+                    <span className="text-[10px] font-bold uppercase text-[#1c2e4a] tracking-widest">Document Status</span>
                     <span className="text-xs text-green-600 flex items-center gap-1 font-medium">
                       <Scale size={12} /> Verified Legal Standard
                     </span>
@@ -1966,7 +1966,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
                 </div>
                 
                 <div className="flex items-center gap-3">
-                  <Button onClick={handleExportPDF} className="bg-[#123765] hover:bg-[#0d2a4d] text-white gap-2 shadow-md px-6">
+                  <Button onClick={handleExportPDF} className="bg-[#1c2e4a] hover:bg-[#142236] text-white gap-2 shadow-md px-6">
                     <FileDown size={18} /> Export PDF
                   </Button>
                 </div>
@@ -2007,7 +2007,7 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
         <DialogContent className="max-w-xl no-print">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Sparkles className="text-[#ccaa49]" /> AI Legal Refiner
+              <Sparkles className="text-[#cb9a20]" /> AI Legal Refiner
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
@@ -2015,9 +2015,9 @@ export default function App({ initialDocType, onHome }: CorpoAppProps = {}) {
               <button
                 key={i}
                 onClick={() => applyRefinedText(opt.text)}
-                className="w-full text-left p-4 rounded-lg border border-muted hover:border-[#ccaa49] hover:bg-[#fffdf5] transition-all group"
+                className="w-full text-left p-4 rounded-lg border border-muted hover:border-[#cb9a20] hover:bg-[#fffdf5] transition-all group"
               >
-                <div className="text-[10px] font-bold uppercase text-[#ccaa49] mb-1">{opt.label}</div>
+                <div className="text-[10px] font-bold uppercase text-[#cb9a20] mb-1">{opt.label}</div>
                 <div className="text-sm leading-relaxed">{opt.text}</div>
               </button>
             ))}

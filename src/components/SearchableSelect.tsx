@@ -90,7 +90,7 @@ export function SearchableSelect({
                 onKeyDown={(e) => {
                   if (e.key === 'Escape') setOpen(false);
                 }}
-                className="pl-10 h-10 bg-white border-slate-200 focus:ring-[#ccaa49] text-sm"
+                className="pl-10 h-10 bg-white border-slate-200 focus:ring-[#cb9a20] text-sm"
               />
               {search && (
                 <button 
@@ -115,13 +115,13 @@ export function SearchableSelect({
                     setSearch('');
                   }}
                   className={cn(
-                    "w-full text-left px-4 py-3 text-sm hover:bg-[#123765]/5 transition-colors flex flex-col gap-1 group",
-                    value === option.value ? "bg-[#123765]/5 text-[#123765] font-semibold" : "text-slate-600 font-medium"
+                    "w-full text-left px-4 py-3 text-sm hover:bg-[#1c2e4a]/5 transition-colors flex flex-col gap-1 group",
+                    value === option.value ? "bg-[#1c2e4a]/5 text-[#1c2e4a] font-semibold" : "text-slate-600 font-medium"
                   )}
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="leading-snug">{option.label}</span>
-                    {value === option.value && <Check className="h-4 w-4 text-[#ccaa49] shrink-0" />}
+                    {value === option.value && <Check className="h-4 w-4 text-[#cb9a20] shrink-0" />}
                   </div>
                   {option.description && (
                     <span className="text-[10px] text-slate-400 font-normal leading-relaxed line-clamp-2">

@@ -43,7 +43,7 @@ function LoadingScreen() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500 text-sm font-medium">
       <div className="flex flex-col items-center gap-3">
-        <div className="w-8 h-8 border-3 border-slate-200 border-t-[#ccaa49] rounded-full animate-spin" />
+        <div className="w-8 h-8 border-3 border-slate-200 border-t-[#cb9a20] rounded-full animate-spin" />
         <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Loading Suite…</span>
       </div>
     </div>
