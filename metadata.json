@@ -1,0 +1,8 @@
+{
+  "name": "STLAF | Drafting Suite",
+  "description": "Unified document drafting suite for Sadsad Tamesis Legal and Accountancy Firm: search-driven landing page over Contracts (SPA, Secretary's Certificates, Articles of Amendment) and Proposals, with Gemini-powered AI refinement and extraction.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
