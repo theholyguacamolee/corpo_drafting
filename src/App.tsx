@@ -4,8 +4,8 @@ import type { DocumentEntry } from './documentRegistry';
 
 // Each module is code-split so its bundle (and, for the amendment
 // module, its scoped CSS) only loads once someone actually opens it.
-const CorpoApp = lazy(() => import('./modules/corpo/CorpoApp'));
-const AmendmentApp = lazy(() => import('./modules/amendment/AmendmentApp'));
+const CorpoApp = lazy(() => import('./templates/corpo/CorpoApp'));
+const AmendmentApp = lazy(() => import('./templates/amendments/AmendmentApp'));
 
 type Route =
   | { view: 'home' }
@@ -41,8 +41,11 @@ export default function App() {
 
 function LoadingScreen() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white text-slate-400 text-sm">
-      Loading…
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500 text-sm font-medium">
+      <div className="flex flex-col items-center gap-3">
+        <div className="w-8 h-8 border-3 border-slate-200 border-t-[#ccaa49] rounded-full animate-spin" />
+        <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Loading Suite…</span>
+      </div>
     </div>
   );
 }

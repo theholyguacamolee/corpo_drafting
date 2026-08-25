@@ -33,9 +33,9 @@ export default function HomeLanding({ onOpenDocument }: HomeLandingProps) {
   return (
     <div className="min-h-screen bg-white flex flex-col font-inter">
       {/* Top bar */}
-      <header className="w-full border-b border-slate-100">
-        <div className="max-w-6xl mx-auto px-6 py-5 flex items-center gap-3">
-          <img src="/stlaf-logo.png" alt="STLAF" className="h-10 w-auto object-contain" />
+      <header className="w-full bg-white border-b border-slate-100 h-14 flex items-center shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+        <div className="max-w-6xl w-full mx-auto px-5 sm:px-6 flex items-center gap-3">
+          <img src="/stlaf-logo.png" alt="STLAF" className="h-8 w-auto object-contain" />
           <div className="hidden sm:block">
             <div className="text-[11px] font-semibold tracking-widest text-slate-400 uppercase">
               Document Drafting Suite
@@ -141,6 +141,7 @@ function CategorySection({
   documents,
   onOpenDocument,
 }: {
+  key?: string;
   category: string;
   documents: DocumentEntry[];
   onOpenDocument: (doc: DocumentEntry) => void;
