@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Search, FileText, ChevronRight, X } from 'lucide-react';
+import { Search, X, ChevronRight, Sparkles } from 'lucide-react';
 import {
   DOCUMENT_CATALOG,
   CATEGORIES,
@@ -10,6 +10,10 @@ import {
 
 interface HomeLandingProps {
   onOpenDocument: (doc: DocumentEntry) => void;
+}
+
+function getIsAi(doc: DocumentEntry) {
+  return doc.id === 'aoi-corporate';
 }
 
 export default function HomeLanding({ onOpenDocument }: HomeLandingProps) {
@@ -31,83 +35,81 @@ export default function HomeLanding({ onOpenDocument }: HomeLandingProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-inter">
-      {/* Top bar */}
-      <header className="w-full bg-white border-b border-slate-100 h-14 flex items-center shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-        <div className="max-w-6xl w-full mx-auto px-5 sm:px-6 flex items-center gap-3">
-          <img src="/stlaf-logo.png" alt="STLAF" className="h-8 w-auto object-contain" />
-          <div className="hidden sm:block">
-            <div className="text-[11px] font-semibold tracking-widest text-slate-400 uppercase">
-              Document Drafting Suite
+    <div className="min-h-screen bg-slate-50 flex flex-col font-inter">
+          <header className="w-full bg-[#1c2e4a] sticky top-0 z-40">
+            <div className="w-full pl-16 pr-16 h-14 flex items-center gap-3">
+              <img src="/stlaf-logo.png" alt="STLAF" className="h-8 w-auto object-contain" />
+              <div className="h-5 w-px bg-white/20 hidden sm:block" />
+              <div className="hidden sm:block">
+                <span className="text-[11px] font-bold tracking-widest text-white uppercase block leading-none">
+                  Sadsad Tamesis Legal &amp; Accountancy Firm
+                </span>
+                <span className="text-[9px] font-semibold tracking-widest text-[#cb9a20] uppercase block mt-0.5">
+                  Document Drafting Suite
+                </span>
+              </div>
             </div>
-          </div>
-        </div>
-      </header>
+          </header>
 
-      {/* Hero / search */}
-      <main className="flex-1 flex flex-col items-center px-6">
-        <div className="w-full max-w-2xl mt-16 sm:mt-24 text-center">
+      <main className="flex-1 flex flex-col items-center px-5 sm:px-8">
+        {/* Hero */}
+        <div className="w-full max-w-2xl mt-12 sm:mt-16 text-center mb-10">
           <img
             src="/stlaf-logo.png"
             alt="Sadsad Tamesis Legal and Accountancy Firm"
-            className="h-24 sm:h-28 w-auto object-contain mx-auto mb-6"
+            className="h-28 w-auto object-contain mx-auto mb-5"
           />
-          <p className="text-slate-500 text-sm sm:text-base mb-8">
-            Search for a document to draft, or browse by category below.
+          <p className="text-slate-500 text-sm mb-7">
+            Select a document template to start drafting.
           </p>
 
+          {/* Search */}
           <div ref={containerRef} className="relative w-full">
             <div
-              className={`flex items-center gap-3 w-full bg-white border rounded-full px-5 py-3.5 shadow-sm transition-shadow ${
-                isFocused ? 'border-[#ccaa49] shadow-md' : 'border-slate-200'
+              className={`flex items-center gap-3 bg-white border rounded-xl px-4 py-3 transition-all ${
+                isFocused
+                  ? 'border-[#cb9a20] ring-2 ring-[#cb9a20]/20 shadow-sm'
+                  : 'border-slate-200 hover:border-slate-300'
               }`}
             >
-              <Search size={18} className="text-slate-400 shrink-0" />
+              <Search size={17} className="text-slate-400 shrink-0" />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onFocus={() => setIsFocused(true)}
-                placeholder="Search documents e.g. “SPA”, “proposal”, “articles of amendment”…"
-                className="flex-1 outline-none text-sm sm:text-base text-slate-800 placeholder:text-slate-400 bg-transparent"
+                placeholder='Search e.g. "SPA", "SEC Certificate", "Amendments"…'
+                className="flex-1 outline-none text-sm text-slate-700 placeholder:text-slate-400 bg-transparent"
               />
               {query && (
                 <button
                   onClick={() => setQuery('')}
-                  className="text-slate-300 hover:text-slate-500 shrink-0"
-                  aria-label="Clear search"
+                  className="text-slate-400 hover:text-slate-600 shrink-0"
                 >
-                  <X size={16} />
+                  <X size={15} />
                 </button>
               )}
             </div>
 
-            {/* Recommendations dropdown */}
+            {/* Search Dropdown */}
             {showDropdown && (
-              <div className="absolute left-0 right-0 mt-2 bg-white border border-slate-200 rounded-2xl shadow-xl max-h-80 overflow-y-auto text-left z-30">
+              <div className="absolute left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-lg max-h-72 overflow-y-auto text-left z-30">
                 {results.length === 0 ? (
                   <div className="px-5 py-6 text-sm text-slate-400 text-center">
-                    No documents match “{query}”.
+                    No documents found for "{query}".
                   </div>
                 ) : (
                   results.map((doc) => (
                     <button
                       key={doc.id}
                       onClick={() => onOpenDocument(doc)}
-                      className="w-full flex items-start gap-3 px-5 py-3.5 text-left hover:bg-slate-50 border-b border-slate-50 last:border-b-0"
+                      className="w-full flex items-center justify-between gap-3 px-4 py-3 text-left hover:bg-slate-50 border-b border-slate-100 last:border-b-0 group"
                     >
-                      <div className="mt-0.5 w-8 h-8 rounded-lg bg-[#123765]/5 text-[#123765] flex items-center justify-center shrink-0">
-                        <FileText size={16} />
-                      </div>
                       <div className="min-w-0">
-                        <div className="text-sm font-semibold text-slate-800 truncate">
-                          {doc.title}
-                        </div>
-                        <div className="text-xs text-slate-400 truncate">
-                          {doc.category}
-                          {doc.subCategory ? ` · ${doc.subCategory}` : ''}
-                        </div>
+                        <div className="text-sm font-semibold text-slate-800 truncate">{doc.title}</div>
+                        <div className="text-xs text-slate-400 truncate mt-0.5">{doc.category}</div>
                       </div>
+                      <ChevronRight size={15} className="text-slate-300 group-hover:text-[#cb9a20] shrink-0 transition-colors" />
                     </button>
                   ))
                 )}
@@ -116,8 +118,8 @@ export default function HomeLanding({ onOpenDocument }: HomeLandingProps) {
           </div>
         </div>
 
-        {/* Category browse */}
-        <div className="w-full max-w-5xl mt-16 mb-20">
+        {/* Categories */}
+        <div className="w-full max-w-5xl mb-16 space-y-10">
           {CATEGORIES.map((category) => (
             <CategorySection
               key={category}
@@ -129,8 +131,8 @@ export default function HomeLanding({ onOpenDocument }: HomeLandingProps) {
         </div>
       </main>
 
-      <footer className="w-full border-t border-slate-100 py-6 text-center text-[11px] tracking-wide text-slate-400">
-        Sadsad Tamesis Legal and Accountancy Firm
+      <footer className="w-full border-t border-slate-200 bg-white py-5 text-center text-xs text-slate-400">
+        Sadsad Tamesis Legal and Accountancy Firm · Internal Drafting System
       </footer>
     </div>
   );
@@ -146,55 +148,45 @@ function CategorySection({
   documents: DocumentEntry[];
   onOpenDocument: (doc: DocumentEntry) => void;
 }) {
-  // Group by sub-category for display, keeping things flexible: documents
-  // without a subCategory just render directly under the category.
-  const groups = useMemo(() => {
-    const map = new Map<string, DocumentEntry[]>();
-    for (const doc of documents) {
-      const key = doc.subCategory ?? '';
-      if (!map.has(key)) map.set(key, []);
-      map.get(key)!.push(doc);
-    }
-    return map;
-  }, [documents]);
-
   return (
-    <section className="mb-12">
-      <h2 className="text-xs font-bold uppercase tracking-widest text-[#123765] mb-4 flex items-center gap-2">
-        <span className="w-6 h-[2px] bg-[#ccaa49] inline-block" />
-        {category}
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {[...groups.entries()].map(([sub, docs]) =>
-          docs.map((doc) => (
-            <button
-              key={doc.id}
-              onClick={() => onOpenDocument(doc)}
-              className="group text-left p-5 bg-white border border-slate-100 rounded-xl hover:border-[#ccaa49] hover:shadow-md transition-all"
-            >
-              <div className="flex items-center justify-between mb-2">
-                {sub ? (
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                    {sub}
-                  </span>
-                ) : (
-                  <span />
-                )}
-                <ChevronRight
-                  size={16}
-                  className="text-slate-300 group-hover:text-[#ccaa49] group-hover:translate-x-0.5 transition-all"
-                />
-              </div>
-              <div className="text-sm font-semibold text-slate-800 mb-1">{doc.title}</div>
-              <div className="text-xs text-slate-500 line-clamp-2">{doc.description}</div>
-            </button>
-          ))
-        )}
+    <section>
+      {/* Category Label */}
+      <div className="flex items-center gap-3 mb-4">
+        <span className="w-1 h-5 rounded-full bg-[#cb9a20] inline-block shrink-0" />
+        <h2 className="text-xs font-bold uppercase tracking-widest text-[#1c2e4a]">
+          {category}
+        </h2>
+        <div className="flex-1 h-px bg-slate-200" />
+      </div>
+
+      {/* Document Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {documents.map((doc) => (
+          <button
+            key={doc.id}
+            onClick={() => onOpenDocument(doc)}
+            className="group text-left bg-white border border-slate-200 hover:border-[#1c2e4a] rounded-xl p-5 transition-all hover:shadow-md"
+          >
+            <div className="flex items-start justify-between gap-2 mb-2">
+              <span className="text-sm font-semibold text-slate-800 group-hover:text-[#1c2e4a] transition-colors leading-snug">
+                {doc.title}
+              </span>
+              {getIsAi(doc) && (
+                <span className="shrink-0 inline-flex items-center gap-1 text-[10px] font-bold uppercase px-2 py-0.5 rounded-md bg-[#cb9a20]/10 text-[#9a7210] border border-[#cb9a20]/20">
+                  <Sparkles size={10} />
+                  AI
+                </span>
+              )}
+            </div>
+            <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">{doc.description}</p>
+            <div className="mt-3 flex items-center gap-1 text-[11px] font-semibold text-[#cb9a20] opacity-0 group-hover:opacity-100 transition-opacity">
+              Open <ChevronRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </button>
+        ))}
       </div>
     </section>
   );
 }
 
-// Kept for reference/future flexibility: full catalog is exported from
-// documentRegistry.ts and consumed above.
 export { DOCUMENT_CATALOG };
